@@ -3,7 +3,7 @@ from Reviews import views
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('', views.reviews_class,basename='user_reviews')
+router.register('', views.reviews_add,basename='user_reviews')
 
 urlpatterns = [
     path('add/reviews/',include(router.urls)),

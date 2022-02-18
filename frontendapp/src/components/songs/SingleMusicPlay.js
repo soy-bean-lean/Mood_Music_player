@@ -125,7 +125,7 @@ const SingleMusicPlay = ({AUTHORIZATION_TOKEN}) => {
                             />
                         </div>
                         </TopShadowBar>
-                            <ReviewsByUser _SONG_NAME_={_songs_to_play_.song_name} AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
+                            <ReviewsByUser _SONG_ID_={_songs_to_play_.id}  _SONG_NAME_={_songs_to_play_.song_name} AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
                         </>
                         :
                         <>

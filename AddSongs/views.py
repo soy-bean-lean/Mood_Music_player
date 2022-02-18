@@ -20,7 +20,7 @@ class songs_name_upload(viewsets.ModelViewSet):
     serializer_class = Songs_Name_Serializer
     filter_backends = [SearchFilter,OrderingFilter]
     search_fields = ['song_name','artist_name','song_file','cover_photo','category']
-    lookup_field = 'song_name'
+    # lookup_field = 'song_name'
 
 
 
@@ -31,4 +31,4 @@ class SongsReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = [SearchFilter,OrderingFilter]
     search_fields = ['song_name','artist_name','song_file','cover_photo','category']
     lookup_field = 'song_name'
-    permission_classes=[IsAuthenticated]
+    # permission_classes=[IsAuthenticated]

@@ -118,7 +118,7 @@ const ListSongs = ({AUTHORIZATION_TOKEN}) => {
                                     return (
                                                     <div key={index+1} style={{width:"350px"}}>
                                                         <button className='btn_none' onClick={()=>{
-                                                                navigate("update/"+song["song_name"])
+                                                                navigate("update/"+song["id"])
                                                         }}>
                                                         <div className='innderflex'>
                                                             <div>
@@ -134,7 +134,7 @@ const ListSongs = ({AUTHORIZATION_TOKEN}) => {
                                                         <button
                                                         className='btn_none float-right'
                                                         onClick={()=>{
-                                                            delete_song(song["song_name"])
+                                                            delete_song(song["id"])
                                                         }}
                                                         >
                                                             <FontAwesomeIcon size={'1x'} style={{color:'red'}} icon={faTrash}></FontAwesomeIcon>
@@ -191,6 +191,7 @@ const ListSongs = ({AUTHORIZATION_TOKEN}) => {
                             <p>Load some data first ......</p>
                         :
                         <center>
+                            <p><b>Not Found</b></p>
                             <img style={{width:"400px",height:"400px",borderRadius:"30px"}} src={GET_PROFILE_PICTURE+"/admin_data_not_found.gif"} alt="data not found" />
                         </center>
                     }

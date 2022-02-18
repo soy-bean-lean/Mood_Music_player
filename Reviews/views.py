@@ -8,48 +8,42 @@ from AddSongs.models import SongsName
 from accounts.models import UserAccount
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
+from django.shortcuts import get_list_or_404, get_object_or_404
 
-
-# class Paginate_Data(PageNumberPagination):
-#     page_size = 4
-#     page_query_param = "load_data"
-
-
-# This will ad reviews
 @permission_classes([IsAuthenticated])
-class reviews_class(viewsets.ModelViewSet):
-    # pagination_class = Paginate_Data
+class reviews_add(viewsets.ModelViewSet):
     queryset = UserReviews.objects.all()
     serializer_class = Reviews_Serializer
     filter_backends = [SearchFilter,OrderingFilter]
+    def destroy(self, *args, **kwargs):
+        try:
+            _check_user_id_ = UserReviews.objects.filter(id=self.kwargs['pk']).values('user_id')
+            if str((list(_check_user_id_))[0]["user_id"]) == str(self.request.user.id):
+                pass
+            else:
+                return Response({"message":"not athorized"}, status=status.HTTP_200_OK)
+            UserReviews.objects.get(id=self.kwargs['pk']).delete()
+            return Response({"message":"success"}, status=status.HTTP_200_OK)
+        except:
+            return Response({"message":"Something went wrong"}, status=status.HTTP_200_OK)
     def perform_create(self, serializer):
-        # {'id': 14, 'reviews': '000000', 'category': 'happy', 'songs_name': 'first songs', 'first_name': 2}
-        # print("============================================")
-        # print(self.request.data)
-        # first_name = self.request.user.id
-        # print("============================================")
-        # id_of_user = list(UserAccount.objects.filter(id=self.request.user.id).values('id'))
-        # user_id = serializer.validated_data.get('first_name')
-        # print(user_id)
-        # if(user_id==self.request.user.email):
-        # else:
-        print(self.request.user.email)
-        #     return Response({"message":"You are not authorized to do that"}, status=status.HTTP_400_BAD_REQUEST)
-        emotions_category = list(SongsName.objects.filter(song_name=self.request.data['songs_name']).values('category'))
-
-        serializer.save(category=emotions_category[0]["category"])
-        # print(serializer.data)
+        emotions_category = list(SongsName.objects.filter(id=self.request.data['song_data']).values('category'))
+        serializer.save(category=emotions_category[0]["category"],first_name=self.request.user.first,user_id=self.request.user.id)
 
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
+# @permission_classes([IsAuthenticated])
 @api_view(('GET',))
 def reviews(request,value):
+    # print(value)
     try:
-        _reviews_ = UserReviews.objects.filter(songs_name=str(value)).values().order_by('-id')
-        print(_reviews_)
+        _reviews_ = UserReviews.objects.filter(song_data=str(value)).values().order_by('-id')
+    # _reviews_ = UserReviews.objects.filter(ID_id=str(value)).values('uuid')
+    # print(_reviews_)
+        # print(_reviews_)
         return Response(_reviews_, status=status.HTTP_200_OK)
     except:
         return Response({"message":"...?..."}, status=status.HTTP_400_BAD_REQUEST)

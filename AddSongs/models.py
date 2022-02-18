@@ -39,7 +39,7 @@ def AUDIO_VALIDATE(AUDIO_FILE):
     pass
 class SongsName(models.Model):
     # International Standard Recording Code (ISRC)
-    uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, db_index=True, editable=False, unique=True)
+    # uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, db_index=True, editable=False, unique=True)
     song_name = models.CharField(max_length=20,unique=True,editable=True)
     song_irsc = models.CharField(max_length=30,unique=True,validators=[IRSC_VALIDATE])
     artist_name = models.CharField(max_length=20,null=False)
@@ -47,6 +47,6 @@ class SongsName(models.Model):
     cover_photo = models.FileField(upload_to ='cover/',validators=[validate_image],null=False,help_text='Maximum file size allowed is 5MB')
     category = models.CharField(max_length=50, choices=EMOTIONS_CHOICES.choices)
     def __str__(self):
-        return self.uuid
+        return self.song_name
     # class Meta:
-    #     ordering = ['songs_name']
+    #     ordering = ['id']

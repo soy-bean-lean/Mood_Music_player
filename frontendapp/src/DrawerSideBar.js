@@ -102,12 +102,12 @@ const DrawerSideBar = ({AUTHORIZATION_TOKEN}) => {
                             <span style={{marginLeft:"17px"}}><b>Signup</b></span>
                         </Link>
                         </li>
-                        <li style={_ui_style_}>
+                        {/* <li style={_ui_style_}>
                         <Link  style={_link_style_inner} to="/Songs">
                             <FontAwesomeIcon  style={_icon_style_}  icon={faMusic}></FontAwesomeIcon>
                             <span style={{marginLeft:"17px"}}><b>Songs</b></span>
                         </Link>
-                        </li>
+                        </li> */}
                         </ul>
                     </div>
                 </SideDivWhole>
@@ -115,11 +115,11 @@ const DrawerSideBar = ({AUTHORIZATION_TOKEN}) => {
 
                             <Route path="/" element={<Goto AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>}/>
                             <Route path="/login" element={<Login AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>}/>
-                            <Route path="Songs">
+                            {/* <Route path="Songs">
                                 <Route index element={<SongList />} />
                                     <Route path="singleemitions/:emotions" element={<SingleEmotionsSongs />} />
                                     <Route path="playsongs/:name" element={<SingleMusicPlay />} />
-                            </Route>
+                            </Route> */}
                             <Route path="/signup" element={<Signup />} />
                             <Route path="activate/:id/:token" element={<EmailVerification />} />
                             <Route path=":page" element={<Goto AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>}/>

@@ -27,8 +27,8 @@ const TrendingSongsList = ({AUTHORIZATION_TOKEN}) => {
     <MusicTrendingData category="sad" _table_color_="table-info" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
     <MusicTrendingData category="surprise" _table_color_="table-warning" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
     <MusicTrendingData category="angry" _table_color_="table-danger" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
-    <MusicTrendingData category="neutral" _table_color_="ddd" _text_color_="wheat"  color_from_props="#bd8ad3"AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
-    {/* <MusicTrendingData category="diguest" _table_color_="test" _text_color_="wheat" color_from_props="black"/> */}
+    <MusicTrendingData category="neutral" _table_color_="ddd" _text_color_="wheat"  color_from_props="#bd8ad3" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
+    {/* <MusicTrendingData category="diguest" _table_color_="test" _text_color_="wheat" color_from_props="black" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/> */}
 
   </tbody>
   </table>

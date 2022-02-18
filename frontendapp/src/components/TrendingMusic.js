@@ -13,7 +13,7 @@ const TrendingMusic = ({AUTHORIZATION_TOKEN}) => {
         <TopShadowBar>
         <div className='top_bar_with_shadow_class' style={{backgroundColor:"#96e4e7"}}>
         <p className="blink float-left" style={{fontSize:"15px",padding:"5px",fontWeight:"bold",display:"inline-block"}}>
-            <span className='span_trending'>Trending Songs </span>😀 😔 🙂 😳 🤢 😲 😡
+            <span className='span_trending' style={{color:"red"}}>Emotion Based Like songs</span>😀 😔 🙂 😳 🤢 😲 😡
         </p>
         <center>
             <button type="button" className='btn btn-warning float-right' style={{fontWeight:"bold"}}

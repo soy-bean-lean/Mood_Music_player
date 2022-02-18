@@ -51,7 +51,7 @@ const EditUpdate = ({AUTHORIZATION_TOKEN}) => {
                     <UpdateEdit
                       AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
                       name_of_type="song_name"
-                      data_send_from_url={single_data["song_name"]}
+                      data_send_from_url={single_data["id"]}
                       datatypeprops="text"
                       value_props={single_data["song_name"]}
                       uuid_of_song={single_data["uuid"]}
@@ -61,7 +61,7 @@ const EditUpdate = ({AUTHORIZATION_TOKEN}) => {
                       AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
                       name_of_type="artist_name"
                       datatypeprops="text"
-                      data_send_from_url={single_data["song_name"]}
+                      data_send_from_url={single_data["id"]}
                       value_props={single_data["artist_name"]}
                       uuid_of_song={single_data["uuid"]}
                       label_name="Artist name"
@@ -71,14 +71,14 @@ const EditUpdate = ({AUTHORIZATION_TOKEN}) => {
                     <Select_Update
                       value_data={single_data["category"]}
                       AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
-                      data_send_from_url={single_data["song_name"]}
+                      data_send_from_url={single_data["id"]}
                     />
                   <br></br>
                   <UpdateEdit
                       AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
                       name_of_type="song_irsc"
                       datatypeprops="text"
-                      data_send_from_url={single_data["song_name"]}
+                      data_send_from_url={single_data["id"]}
                       value_props={single_data["song_irsc"]}
                       uuid_of_song={single_data["uuid"]}
                       label_name="Song Irsc"
@@ -88,13 +88,13 @@ const EditUpdate = ({AUTHORIZATION_TOKEN}) => {
                      <p>{single_data["song_file"]}</p> */}
                      <UpdateCoverPhoto
                         AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
-                        data_send_from_url={single_data["song_name"]}
+                        data_send_from_url={single_data["id"]}
                         value_props={single_data["cover_photo"]}
 
                      />
                     <UpdateSong
                         AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
-                        data_send_from_url={single_data["song_name"]}
+                        data_send_from_url={single_data["id"]}
                         value_props={single_data["song_file"]}
 
                      />

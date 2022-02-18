@@ -35,7 +35,7 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
     const [emotion,setemotion] = useState(false)
     const [loading,setloading] = useState(false)
     const [facenotfound,setfacenotfound] = useState(false)
-
+    const [_loading_songs,set_loading_songs] = useState(true)
     const showImage = () =>{
         // console.log(webRef.current.getScreenshot());
         setimage_data(webRef.current.getScreenshot());
@@ -80,6 +80,7 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
 
         function send_data(){
             setloading(true)
+            set_loading_songs(false)
             console.log("call_only_once")
             const image_base64_test = IMAGE_FILE
             let BACKENDURL = BACKENDURL_FOR_SONGS
@@ -94,6 +95,7 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
                 set_capturepicture(false)
                 setemotion(true)
                 setloading(false)
+                set_loading_songs(true)
                 }).catch(err =>{
                   console.log(err)
                   console.log("bad 400")
@@ -102,6 +104,7 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
                   set_show_image(true)
                   setimage_data(null)
                   setfacenotfound(true)
+                  set_loading_songs(true)
                 })
             }
 return (
@@ -150,25 +153,32 @@ return (
                                (show_image)?
                                         // if there is image after picture taken
                                     (image_data)?
-                                    <>
-                                        <center>
-                                            <img
-                                                style={{borderRadius:"30px",marginBottom:"10px",marginTop:"10px",width:"350px",hegith:"350px"}}
-                                                src={image_data} alt="image of user"
-                                            />
-                                            <br></br><Button style={{borderRadius:"30px",marginBottom:"10px"}} type="button" color="info" variant="contained" onClick={() =>
-                                                    dispatch_reducer({type:"TAKE_ANOTHER_SHOT"})
-                                                }>Take a Another Shot
-                                                </Button>
-                                                <Button style={{borderRadius:"30px",marginBottom:"10px",marginLeft:"10px"}} type="button" color="success" variant="contained"
-                                                onClick={() =>
-                                                    // dispatch_reducer({type:"SEND_PICTURE_DATA"})
-                                                    send_data()
+                                    (_loading_songs)?
+                                        <>
+                                            <center>
+                                                <img
+                                                    style={{borderRadius:"30px",marginBottom:"10px",marginTop:"10px",width:"350px",hegith:"350px"}}
+                                                    src={image_data} alt="image of user"
+                                                />
+                                                <br></br><Button style={{borderRadius:"30px",marginBottom:"10px"}} type="button" color="info" variant="contained" onClick={() =>
+                                                        dispatch_reducer({type:"TAKE_ANOTHER_SHOT"})
+                                                    }>Take a Another Shot
+                                                    </Button>
+                                                    <Button style={{borderRadius:"30px",marginBottom:"10px",marginLeft:"10px"}} type="button" color="success" variant="contained"
+                                                    onClick={() =>
+                                                        // dispatch_reducer({type:"SEND_PICTURE_DATA"})
+                                                        send_data()
 
-                                                }>Submit
-                                                </Button>
+                                                    }>Submit
+                                                    </Button>
+                                            </center>
+                                        </>
+                                        :
+                                        <>
+                                        <center>
+                                            <CircularProgress />
                                         </center>
-                                    </>
+                                        </>
                                     :
                                     (facenotfound)?
                                     <center>
