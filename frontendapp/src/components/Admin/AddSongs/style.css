@@ -1,0 +1,28 @@
+.inner_div{
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
+  }
+
+  .inner_div > div {
+    background-color: #f1f1f1;
+    width: 100%;
+  }
+
+
+  #image-upload-button{
+    width: 200px;
+    height: 40px;
+    background: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+
+::-webkit-file-upload-button {
+    visibility: hidden;
+}
+

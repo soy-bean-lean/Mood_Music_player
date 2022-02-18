@@ -1,0 +1,38 @@
+.TopDiv{
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(113, 43, 226);
+    width: 100%;
+    display: inline-block
+}
+/* .topBar{
+      margin: auto;
+      margin-top: 25px;
+      font-size: 15px;
+      font-family: cursive;
+      display: inline-block
+} */
+.para:hover{
+    font-size: 17px;
+    font-family: cursive;
+    transition: font 0.3s ease;
+  }
+
+
+ .slow {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 100px;
+    overflow: hidden;
+    animation: slow 2s ease forwards;
+  }
+
+  @keyframes slow {
+    from {
+      max-width: 0.5rem;
+    }
+    to {
+      max-width: 5rem;
+    }
+  }

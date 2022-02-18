@@ -1,0 +1,35 @@
+.songs-container {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  .songs-container > div {
+    background-color: #f1f1f1;
+    margin: 5px;
+    padding:20px;
+    box-shadow: -2px 5px 3px -3px #65e3a7;
+
+  }
+  .innderflex{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .innderflex > div {
+    background-color: #f1f1f1;
+
+    margin: 5px;
+    /* padding:20px; */
+  }
+
+  .songs-container > div:hover{
+    color:rgb(46, 46, 231);
+    margin: 7px;
+    cursor: pointer;
+    box-shadow: 0px 4px 7px 3px #65e3a7;
+  }
+
+
+  .btn_none {
+    all: unset;
+    cursor: pointer;
+  }
