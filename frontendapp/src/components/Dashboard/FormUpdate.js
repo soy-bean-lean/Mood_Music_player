@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {  BACKEND_POST_NEW_PROFILE } from '../../config/urls';
 
-const FormUpdate = ({name_of_type,AUTHORIZATION_TOKEN,datatypeprops,value_props,id_of_user,label_name}) => {
+const FormUpdate = ({name_of_type,id__type,AUTHORIZATION_TOKEN,datatypeprops,value_props,id_of_user,label_name}) => {
 
     const { register, handleSubmit, formState: { errors }} = useForm();
     const [valuedata,setvalue] = useState(value_props)
@@ -55,7 +55,7 @@ const FormUpdate = ({name_of_type,AUTHORIZATION_TOKEN,datatypeprops,value_props,
                     type={datatypeprops}
                     name={name_of_type}
                     className="form-control float-left"
-                    id={datatypeprops}
+                    id={id__type}
                     autoComplete="off"
                     value={valuedata?valuedata:""}
                     {...register(name_of_type, {

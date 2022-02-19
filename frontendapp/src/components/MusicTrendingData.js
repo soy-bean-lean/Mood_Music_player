@@ -70,7 +70,7 @@ const _play_ = {
                         {/* /Songs/playsongs/ */}
                         {(_songs_["song_name"]=="...")?
                         <>
-                            <p style={{fontSize:"13px"}}>Not yet listed in Trending</p>
+                            <p style={{fontSize:"13px"}}>Not yet Reviewd</p>
                         </>:
                             <>
                             <Link to={"/Songs/playsongs/"+_songs_["song_name"]}>

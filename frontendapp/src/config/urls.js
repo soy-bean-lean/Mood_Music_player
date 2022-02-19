@@ -7,9 +7,15 @@ export const BACKEND_URL_LOGOUT= MAIN_URL + "/logout/"
 export const BACKEND_ALL_SINGUP = MAIN_URL + "/auth/users/"
 export const BACKEND_ALL_ACTIVATION = MAIN_URL + "/auth/users/activation/"
 
+export const BACKEND_RESEND_ACTIVATION = MAIN_URL + "/auth/users/resend_activation/"
+export const BACKEND_RESET_PASSWORD = MAIN_URL + "/auth/users/reset_password/"
+export const BACKEND_RESET_FINAL_PASSWORD = MAIN_URL + "/auth/users/reset_password_confirm/"
+
+
 export const BACKEND_URL_LOGIN = MAIN_URL +  "/accounts/accounts_data/token/"
 
 export const BACKEND_POST_NEW_PROFILE = MAIN_URL + "/updateuserdata/_update_data_/"
+export const BACKEND_POST_NEW_PASSWORD = MAIN_URL + "/auth/users/set_password/"
 
 
 export const BACKENDURL_FOR_SONGS = MAIN_URL + "/image/uploads/upload/image/"

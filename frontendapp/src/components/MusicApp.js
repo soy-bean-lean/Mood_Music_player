@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { _save_and_play_song_from_list_} from '../features/Pass_data'
 import ReviewsByUser from './songs/ReviewsByUser';
 
-const MusicApp = () => {
+const MusicApp = ({AUTHORIZATION_TOKEN}) => {
 // console.log(_songs_from_server_)
 
     const [_songs_name_for_review_, set_songs_name_for_review_] = useState(null)
@@ -25,6 +25,7 @@ const MusicApp = () => {
     const [show, setshow] = useState(false)
     const [_play_pause_state, set_play_pause_state] = useState(true)
     const [_logo_360_rotate_, set_logo_360_rotate_] = useState(true)
+    const [_SONG_ID_, set_SONG_ID_] = useState(null)
 
     const dispatch = useDispatch()
     const _songs_from_server_ = useSelector((state) => state._PASS_LIST_ID_SONGS_.Pass_id_for_song)
@@ -93,7 +94,7 @@ const handleClickNext = () => {
         // console.log(songs[playnow].song_name)
         console.log("playnow : "+playnow)
         // console.log(songs[playnow].song_name)
-        set_songs_name_for_review_(songs[playnow].song_name)
+        set_songs_name_for_review_(songs[playnow].id)
     }
 
   return (
@@ -129,7 +130,8 @@ const handleClickNext = () => {
                                             alt="Cover Photo"
                                         />
                                         <p style={{fontWeight:"bold",fontSize:"13px"}}>
-                                            <span>Song Name : {songs[playnow].song_name}</span>
+                                        <span>Song Name : {songs[playnow].song_name}</span>
+                                        {/* <span>Song Name : {songs[playnow].id}</span> */}
                                             <br></br>
                                             <span>Singer : {songs[playnow].song_name}</span>
                                         </p>
@@ -159,6 +161,8 @@ const handleClickNext = () => {
         ?
             <ReviewsByUser
                 _SONG_NAME_={_songs_name_for_review_}
+                AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
+                _SONG_ID_={_songs_name_for_review_}
             />
         :
             null

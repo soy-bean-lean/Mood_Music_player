@@ -115,6 +115,8 @@ const Signuppage = () => {
                   <>
                   <center>
                     <Alert style={{textAlign:"center",fontFamily:"cursive",fontSize:"15px",width:"100%",marginTop:"2px",backgroundColor:'#e31e1e',color:"white"}} severity="error">{status.added}</Alert>
+                    <Link to="/login">Login</Link><br></br>
+                    <Link to="/resend-email">Resend Verification</Link>
                   </center>
                   </>
                 ) : (null)}

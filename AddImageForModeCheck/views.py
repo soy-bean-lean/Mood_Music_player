@@ -66,5 +66,4 @@ def image_uplaod_detect(request):
    except:
       # print("Error was hit")
       return Response({"message": "Do You even Have a Face"}, status=status.HTTP_400_BAD_REQUEST)
-      # return Response({"message": "Good"},status=status.HTTP_200_OK)
 

@@ -16,6 +16,7 @@ import { MAIN_URL , BACKEND_POST_NEW_PROFILE , GET_PROFILE_PICTURE } from '../..
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormUpdate from './FormUpdate';
+import PasswordSet from './PasswordSet';
 
 const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pic_}) => {
     const fileRef = useRef(null);
@@ -176,6 +177,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                     <FormUpdate
                                                         AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
                                                         datatypeprops="email"
+                                                        id__type="emailid"
                                                         value_props={_profile_data_[0]["email"]}
                                                         id_of_user={_profile_data_[0]["id"]}
                                                         label_name="E-mail"
@@ -184,6 +186,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                     <FormUpdate
                                                         AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
                                                         datatypeprops="text"
+                                                        id__type="firstid"
                                                         value_props={_profile_data_[0]["first"]}
                                                         id_of_user={_profile_data_[0]["id"]}
                                                         label_name="First Name"
@@ -192,6 +195,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                     <FormUpdate
                                                         AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
                                                         datatypeprops="text"
+                                                        id__type="lastid"
                                                         value_props={_profile_data_[0]["last"]}
                                                         id_of_user={_profile_data_[0]["id"]}
                                                         label_name="Last Name"
@@ -207,6 +211,12 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                     </center>
                             </TopShadowBar>
                         </div>
+                        <TopShadowBar style={{width:"45%"}}>
+                                <div className='top_bar_with_shadow_class' style={{backgroundColor:'#9099fb'}}>
+                                    <p className="float-left" style={{fontSize:"20px",padding:"5px",fontWeight:"bold"}}>Password</p>
+                                </div>
+                                    <PasswordSet AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN} />
+                        </TopShadowBar>
             </div>
         </div>
     </SideDivForAllComponents>

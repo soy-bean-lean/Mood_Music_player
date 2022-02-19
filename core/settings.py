@@ -64,8 +64,8 @@ MIDDLEWARE = [
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = '--Your-email--'
-EMAIL_HOST_PASSWORD = '-Your-app-password--'
+EMAIL_HOST_USER = '---your-email------'
+EMAIL_HOST_PASSWORD = '----your-app--password---'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Music Mood Player'
 
@@ -225,7 +225,7 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': 'activate/{uid}/{token}',
-    # 'SEND_ACTIVATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {
         'user_create': 'accounts.serializer.UserCreateSerializer',
         'user': 'accounts.serializer.UserCreateSerializer',

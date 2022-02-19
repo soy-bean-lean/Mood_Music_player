@@ -245,7 +245,7 @@ return (
                                             <LinearProgress />
                                         </Box>
                                         :
-                                        <MusicApp />
+                                        <MusicApp AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN} />
                                     }
                             </>
                         :

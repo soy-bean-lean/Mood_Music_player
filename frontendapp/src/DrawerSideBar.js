@@ -7,13 +7,17 @@ import PageNotFound from './components/PageNotFound';
 import SongList from './components/songs/SongList';
 import SingleEmotionsSongs from './components/songs/SingleEmotionsSongs';
 import SingleMusicPlay from './components/songs/SingleMusicPlay';
-import EmailVerification from './EmailVerification'
+import EmailVerification from './components/accounts/EmailVerification';
 import Signup from './Signup'
 import Login from './components/Login';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faHeadphones,faHome,faMusic,faUser,faUserCheck } from "@fortawesome/free-solid-svg-icons";
 import Logout from './components/Logout';
-import Goto from './components/Goto'
+import Goto from './components/Goto';
+import ResendEmailVerification from './components/accounts/ResendEmailVerification';
+import ResetPassword from './components/accounts/ResetPassword';
+import ResetPasswordFinal from './components/accounts/ResetPasswordFinal';
+
 
 const DrawerSideBar = ({AUTHORIZATION_TOKEN}) => {
 
@@ -120,6 +124,11 @@ const DrawerSideBar = ({AUTHORIZATION_TOKEN}) => {
                                     <Route path="singleemitions/:emotions" element={<SingleEmotionsSongs />} />
                                     <Route path="playsongs/:name" element={<SingleMusicPlay />} />
                             </Route> */}
+                            <Route path="/resend-email" element={<ResendEmailVerification />} />
+                            <Route path="/reset_password" element={<ResetPassword />} />
+
+                            <Route path="password/reset/confirm/:id/:token" element={<ResetPasswordFinal />} />
+
                             <Route path="/signup" element={<Signup />} />
                             <Route path="activate/:id/:token" element={<EmailVerification />} />
                             <Route path=":page" element={<Goto AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>}/>

@@ -77,6 +77,7 @@ const LoginPage = () => {
                     <center>
                       <Alert style={{textAlign:"center",fontFamily:"cursive",fontSize:"15px",width:"100%",marginTop:"2px",backgroundColor:'#e31e1e',color:"white"}} severity="error">{status.added}</Alert>
                       <Link to="/signup" style={{decoration:"none"}} className="btn">Create account</Link><br></br>
+                      <Link to="/reset_password" style={{decoration:"none"}} className="btn">Reset Password</Link><br></br>
                     </center>
                     </>
                   ) : (null)}
