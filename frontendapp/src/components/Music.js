@@ -86,8 +86,8 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
             let BACKENDURL = BACKENDURL_FOR_SONGS
             axios.post(BACKENDURL,{
                 name:"roshan",
-                // image:image_data
-                image: image_base64_test
+                image:image_data
+                // image: image_base64_test
             }).then((response) => {
                 console.log(response.data)
                 dispatch(_save_and_play_song_from_list_(response.data));
