@@ -19,11 +19,11 @@ const Signuppage = () => {
   const SignUpvalidation = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email required'),
     first:Yup.string()
-        .min(2, 'Too Short!')
+        .min(3, 'Too Short!')
         .max(12, 'That\'s huge name not accepted')
         .required('first name required'),
     last:Yup.string()
-        .min(2, 'Too Short!')
+        .min(3, 'Too Short!')
         .max(10, 'That\'s huge name not accepted')
         .required('last name required'),
     password:Yup.string()
@@ -75,8 +75,8 @@ const Signuppage = () => {
                   set_load_spinner_(true)
                   axios.post(BACKEND_ALL_SINGUP,{
                       email:values.email,
-                      first:values.first,
-                      last:values.last,
+                      first_name:values.first,
+                      last_name:values.last,
                       password:values.password,
                       re_password:values.re_password
                     },{ withCredentials: true })

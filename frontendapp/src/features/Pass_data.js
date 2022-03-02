@@ -11,12 +11,15 @@ export const counterSlice = createSlice({
  reducers: {
     _save_and_play_song_from_list_: (state,action) => {
         state.Pass_id_for_song = action.payload
-       }
+       },
+    _delete_and_play_song_from_list_: (state,action) => {
+    state.Pass_id_for_song = null
+    }
  },
 })
 
 
-export const {_save_and_play_song_from_list_} = counterSlice.actions
+export const {_save_and_play_song_from_list_,_delete_and_play_song_from_list_} = counterSlice.actions
 
 export default counterSlice.reducer
 

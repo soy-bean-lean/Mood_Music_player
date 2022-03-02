@@ -92,8 +92,8 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
     },[_SONG_ID_])
     const ReviewsValidation = Yup.object().shape({
         reviews: Yup.string()
-            .min(4, 'Too Short!')
-            .max(30, 'Too Long!')
+            .min(2, 'Too Short!')
+            .max(100, 'Too Long!')
             .required('Type something'),
         });
         const style = {
@@ -142,7 +142,7 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
                     reviews:values.reviews,
                     song_data:_SONG_ID_,
                     category:values.category,
-                    first_name:decoded.first,
+                    first_name:decoded.first_name,
                     user_id:decoded.user_id,
                     // first_name:2,
                 },{
@@ -154,9 +154,11 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
                 })
                 .catch((err) => {
                     // console.log(err)
+                    notifyedited("There was no meaning in Reviews")
                 }).finally(()=>{
                     _data_from_server_(BACKEND_URL_REVIEWS_SHOW)
                     set_posting_(false)
+
 
                 })
             }}
@@ -193,7 +195,7 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
                             <span style={{marginLeft:"5px"}}>
                                 {reviews_by_user["first_name"]}
                             </span>
-                            {(reviews_by_user["first_name"]==decoded.first)
+                            {(reviews_by_user["first_name"]==decoded.first_name)
                                 ?
                                 <>
                                     <p key={reviews_by_user.id}>

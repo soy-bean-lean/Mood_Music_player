@@ -28,7 +28,7 @@ from rest_framework.decorators import api_view, permission_classes
 def get_user_data(request):
     if request.method == 'GET':
         print(request.user.id)
-        _user_data_ = UserAccount.objects.filter(id=request.user.id).values('id','email','first','last','is_active','profile_pic')
+        _user_data_ = UserAccount.objects.filter(id=request.user.id).values('id','email','first_name','last_name','is_active','profile_pic')
         return Response(_user_data_)
     else:
         content = {'message': 'Something went wrong in space'}
@@ -45,3 +45,5 @@ def update_profile(request):
     # profile_pic
     content = {'message': 'good'}
     return Response(content)
+
+

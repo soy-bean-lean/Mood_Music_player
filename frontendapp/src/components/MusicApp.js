@@ -12,11 +12,17 @@ import {Shimmer } from 'react-shimmer'
 import './image.css'
 
 import { useSelector, useDispatch } from "react-redux"
-import { _save_and_play_song_from_list_} from '../features/Pass_data'
+import { _save_and_play_song_from_list_,_delete_and_play_song_from_list_} from '../features/Pass_data'
 import ReviewsByUser from './songs/ReviewsByUser';
+import jwt_decode from "jwt-decode";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import { useNavigate } from "react-router-dom";
 
 const MusicApp = ({AUTHORIZATION_TOKEN}) => {
-// console.log(_songs_from_server_)
+    // console.log(_songs_from_server_)
+    let navigate = useNavigate();
+
+    const [payment, setpayment] = useState("None");
 
     const [_songs_name_for_review_, set_songs_name_for_review_] = useState(null)
     const [songs, setsongs] = useState([])
@@ -25,7 +31,14 @@ const MusicApp = ({AUTHORIZATION_TOKEN}) => {
     const [show, setshow] = useState(false)
     const [_play_pause_state, set_play_pause_state] = useState(true)
     const [_logo_360_rotate_, set_logo_360_rotate_] = useState(true)
-    const [_SONG_ID_, set_SONG_ID_] = useState(null)
+    const [message, setmessage] = useState(false)
+
+    useEffect(() => {
+        var decoded = jwt_decode(AUTHORIZATION_TOKEN);
+        setpayment(decoded.payment_options)
+        console.log(decoded.payment_options)
+    }, [AUTHORIZATION_TOKEN])
+
 
     const dispatch = useDispatch()
     const _songs_from_server_ = useSelector((state) => state._PASS_LIST_ID_SONGS_.Pass_id_for_song)
@@ -99,7 +112,28 @@ const handleClickNext = () => {
 
   return (
         <>
-        {(show)?
+
+        {(message)?
+
+            <>
+            <br></br>
+            <center>
+                <h3 style={{color:"red",fontSize:"20px"}}>
+                    You need subcription for more time
+                </h3>
+                <br></br>
+                <Button
+                variant="contained"
+                onClick={()=>{
+                    navigate('/payment')
+                }}
+                >Go for Subscription</Button>
+            </center>
+            </>
+
+        :
+        (show)?
+
             <TopShadowBar>
             {/* <Container> */}
             <Row>
@@ -122,6 +156,29 @@ const handleClickNext = () => {
                 </div>
                             <div style={{borderRadius:"10px",width:"100%",backgroundColor:"rgb(89 194 244)"}}>
                                 <div style={{margin:"auto",width:"50%"}}>
+                                                {/* this  will check tha payment  */}
+                            {(payment=="yearly" || payment == "monthly")?
+                                    null
+                                :
+                                <center>
+                                <p
+                                    style={{color:"rgb(244 255 161)",fontWeight:"bold",fontSize:"12px"}}
+                                >You can listen only for 4 minute.For more Subcription needed</p>
+                                <CountdownCircleTimer
+                                size={80}
+                                isPlaying
+                                duration={10}
+                                colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+                                colorsTime={[7, 5, 2, 0]}
+                                onComplete={() => {
+                                    setshow(false)
+                                    setmessage(true)
+                                }}
+                            >
+                                {({ remainingTime }) => remainingTime}
+                            </CountdownCircleTimer>
+                                </center>
+                            }
                                     <center>
                                         <img
                                             className={(_logo_360_rotate_)?'image':null}
@@ -138,6 +195,7 @@ const handleClickNext = () => {
                                     </center>
                                 </div>
                             </div>
+
                             <AudioPlayer
                             autoPlay
                                 showSkipControls={true}
@@ -155,10 +213,14 @@ const handleClickNext = () => {
                 {/* </Container> */}
             </TopShadowBar>
             :
-                <Shimmer width={200} height={200} style={{margin:"auto",width:"50%"}} />
+            <Shimmer width={200} height={200} style={{margin:"auto",width:"50%"}} />
         }
-        {(_songs_name_for_review_)
+        {(message)?
+         null
+        :
+        (_songs_name_for_review_)
         ?
+
             <ReviewsByUser
                 _SONG_NAME_={_songs_name_for_review_}
                 AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}

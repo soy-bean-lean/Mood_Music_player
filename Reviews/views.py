@@ -9,6 +9,9 @@ from accounts.models import UserAccount
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 
+
+from textblob import TextBlob
+
 @permission_classes([IsAuthenticated])
 class reviews_add(viewsets.ModelViewSet):
     queryset = UserReviews.objects.all()
@@ -33,18 +36,21 @@ class reviews_add(viewsets.ModelViewSet):
             if str((list(_check_user_id_))[0]["user_id"]) == str(self.request.user.id):
                 pass
             else:
-                return Response({"message":"not athorized"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message":"There was no meaning in Reviews"}, status=status.HTTP_400_BAD_REQUEST)
             instance = self.queryset.get(pk=kwargs.get('pk'))
             serializer = self.serializer_class(instance, data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data)
         except:
-            return Response({"message":"not athorized"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message":"There was no meaning in Reviews"}, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_create(self, serializer):
         emotions_category = list(SongsName.objects.filter(id=self.request.data['song_data']).values('category'))
-        serializer.save(category=emotions_category[0]["category"],first_name=self.request.user.first,user_id=self.request.user.id)
+        serializer.save(category=emotions_category[0]["category"],first_name=self.request.user.first_name,user_id=self.request.user.id)
+
+
+
 
 
 from rest_framework.decorators import api_view
@@ -64,23 +70,32 @@ def reviews(request,value):
     except:
         return Response({"message":"...?..."}, status=status.HTTP_400_BAD_REQUEST)
 
-from textblob import TextBlob
 @api_view(('GET',))
 def analysis_reviews(request,value):
     try:
 
         _data_ = UserReviews.objects.filter(category=value).values()
         _list_data_ = list(_data_)
+        print(_list_data_)
+        # [{'id': 1, 'song_data_id': 1, 'first_name': 'roshan', 'user_id': '2',
+        #   'reviews': 'Good', 'category': 'happy'},
+
+        #  {'id': 2, 'song_data_id': 2, 'first_name': 'roshan', 'user_id': '2',
+        #   'reviews': 'Amazing good', 'category': 'happy'}]
 
         _data_to_analyze_ = {}
         for _data_ragnger_ in range(len(_list_data_)):
             #     convert list to dic coz python dic conversion sucks
+            # converted into id of reviews as key and song  reviews
             _data_to_analyze_[_list_data_[_data_ragnger_]["id"]]=_list_data_[_data_ragnger_]["reviews"]
-            _check_with_id_ = {}
+        _check_with_id_ = {}
+        print(_data_to_analyze_)
 
 
         for key in _data_to_analyze_:
             result = TextBlob(_data_to_analyze_[key]).sentiment.polarity
+            print(key)
+            print(result)
 
             # if polarity of reviews less than 0 then not emotion matched
             if result<0:
@@ -116,3 +131,14 @@ def analysis_reviews(request,value):
             "song_name": "..."
         }]
         return Response(response__data__, status=status.HTTP_200_OK)
+
+
+
+@api_view(('GET',))
+def all_reviews(request):
+    # try:
+    print(UserReviews.objects.filter().values())
+    # print(list(_reviews_))
+    return Response(UserReviews.objects.filter().values(), status=status.HTTP_200_OK)
+    # except:
+    return Response({"message":"...request not permitted ..."}, status=status.HTTP_400_BAD_REQUEST)

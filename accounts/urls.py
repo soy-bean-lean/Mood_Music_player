@@ -10,5 +10,6 @@ urlpatterns = [
     # path('register/',include(router.urls)),
     path('accounts_data/token/', CookieTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('accounts_data/token/refresh/', CookieTokenRefreshView.as_view(), name='token_refresh'),
+    path('token/new/', views.user_new_access_and_refrsh_token_and, name='Token_refresh_of_reflecting_acces_token'),
 ]
 

@@ -7,6 +7,7 @@ import { TopShadowBar } from '../../style/TopShadowBar';
 
 import { useSelector } from "react-redux"
 import { _save_data_,_update_save_data_} from '../../features/ProfileData'
+import { _save_access_token_,_save_refresh_token_ , __delete_refresh_token_} from '../../features/JwtRefreshAccessToken'
 import CircularProgress from '@mui/material/CircularProgress';
 import LogoShow from '../Dashboard/LogoShow'
 import Button from '@mui/material/Button';
@@ -17,12 +18,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormUpdate from './FormUpdate';
 import PasswordSet from './PasswordSet';
+import jwt_decode from "jwt-decode";
 
 const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pic_}) => {
     const fileRef = useRef(null);
     const SUPPORTED = ["image/jpg", "image/jpeg", "image/png"];
     const _profile_data_ = useSelector((state) => state._PROFILE_DATA_.ProfileData)
+    let _token_from_redux_store_ = useSelector((state) => state.CountJwtRefreshAccessToken.JwtAccessToken)
+
     const [show, setShow] = useState(true);
+    const [loading, setloading] = useState(false);
     const notify = () => toast("profile pic updated");
 
     // console.log(_profile_data_.length)
@@ -45,7 +50,11 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
         height: "50px",
         width: "50px",
     }
-
+    var decoded = jwt_decode(_token_from_redux_store_);
+    const colors = ["#9099fb","#a9fde5","#1976d2","#69ed8f" ,"#e68cf3"]
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
   return (
         <SideDivForAllComponents>
         <div className="_side_component_">
@@ -55,7 +64,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                 <div className='div_photo_and_trending'>
                     <div className="_mobile_view">
                             <TopShadowBar >
-                                <div className='top_bar_with_shadow_class' style={{backgroundColor:'#9099fb'}}>
+                                <div className='top_bar_with_shadow_class' style={{backgroundColor:colors[getRandomInt(5)]}}>
                                     <p className="float-left" style={{fontSize:"20px",padding:"5px",fontWeight:"bold"}}>{_proflile_pic_}</p>
                                 </div>
                                 <center>
@@ -69,6 +78,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                             }}
                                             validationSchema={CheckFile}
                                             onSubmit={(values,actions) => {
+                                                setloading(true)
                                                 actions.setStatus(undefined);
                                                 const fd = new FormData();
                                                 console.log(values.id)
@@ -89,11 +99,13 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                     //         });
                                                     // }
                                                     notify()
+                                                    setloading(false)
                                                 }).catch(err => {
                                                     // console.log(err)
                                                         actions.setStatus({
                                                             file: "there was some problem"
                                                             });
+                                                    setloading(false)
                                                 })
                                             }}
                                         >
@@ -118,10 +130,11 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                     />
                                                     <br></br>
                                                      <b><label className="fw-bold">Upload New pic</label></b>
-                                                    <Button onClick={() => {
-                                                        fileRef.current.click();
-                                                    }}
-                                                    ><img style={image_size_button} src={MAIN_URL+'/data/_upload_logo.png'} alt="Image"/></Button>
+
+                                                        <Button onClick={() => {
+                                                            fileRef.current.click();
+                                                        }}
+                                                        ><img style={image_size_button} src={MAIN_URL+'/data/_upload_logo.png'} alt="Image"/></Button>
 
                                             {errors.file?
                                                     <>
@@ -148,9 +161,16 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                     draggable
                                                     pauseOnHover
                                                 />
-                                            <center>
-                                                    <Button variant="contained" style={{marginTop:"20px"}} color="success" type="submit">update pic</Button>
-                                            </center>
+                                            {(loading)?
+                                                <>
+                                                    <p style={{fontWeight:"bold"}}>Uploading ...</p>
+                                                    <CircularProgress/>
+                                                </>
+                                                :
+                                                <center>
+                                                        <Button variant="contained" style={{marginTop:"20px"}} color="success" type="submit">update pic</Button>
+                                                </center>
+                                            }
                                                 </Form>
                                             )}
                                         </Formik>
@@ -168,7 +188,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
 
                         <div className="_mobile_view" >
                             <TopShadowBar >
-                                    <div className='top_bar_with_shadow_class' style={{backgroundColor:'#9099fb'}}>
+                                    <div className='top_bar_with_shadow_class' style={{backgroundColor:colors[getRandomInt(5)]}}>
                                         <p className="float-left" style={{fontSize:"20px",padding:"5px",fontWeight:"bold"}}>{_title_of_profile_data_}</p>
                                     </div>
                                     <center>
@@ -187,19 +207,19 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                         AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
                                                         datatypeprops="text"
                                                         id__type="firstid"
-                                                        value_props={_profile_data_[0]["first"]}
+                                                        value_props={_profile_data_[0]["first_name"]}
                                                         id_of_user={_profile_data_[0]["id"]}
                                                         label_name="First Name"
-                                                        name_of_type="first"
+                                                        name_of_type="first_name"
                                                     />
                                                     <FormUpdate
                                                         AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}
                                                         datatypeprops="text"
                                                         id__type="lastid"
-                                                        value_props={_profile_data_[0]["last"]}
+                                                        value_props={_profile_data_[0]["last_name"]}
                                                         id_of_user={_profile_data_[0]["id"]}
                                                         label_name="Last Name"
-                                                        name_of_type="last"
+                                                        name_of_type="last_name"
                                                     />
                                                 </>
                                     :
@@ -211,12 +231,74 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                     </center>
                             </TopShadowBar>
                         </div>
-                        <TopShadowBar style={{width:"45%"}}>
-                                <div className='top_bar_with_shadow_class' style={{backgroundColor:'#9099fb'}}>
+                        <div className="_mobile_view" >
+                        <TopShadowBar >
+                                <div className='top_bar_with_shadow_class' style={{backgroundColor:colors[getRandomInt(5)]}}>
                                     <p className="float-left" style={{fontSize:"20px",padding:"5px",fontWeight:"bold"}}>Password</p>
                                 </div>
                                     <PasswordSet AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN} />
                         </TopShadowBar>
+                        </div>
+                        <div className="_mobile_view" >
+                        <TopShadowBar >
+                                <div className='top_bar_with_shadow_class' style={{backgroundColor:colors[getRandomInt(5)]}}>
+                                    <p className="float-left" style={{fontSize:"20px",padding:"5px",fontWeight:"bold"}}>Subscription Details</p>
+                                </div>
+
+                                {(decoded.payment_options)=="None"?
+                                    <table className="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Verfied</th>
+                                            <th scope="col">Subscription</th>
+                                            <th scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                            <td><img
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdw0amfVifI9kniIMKtEb67VS2P10uS_YYhw&usqp=CAU"
+                                                style={{height:"25px",width:"25px"}}
+                                            /></td>
+                                            <td>{decoded.payment_options}</td>
+                                            <td>{decoded.payment_options}</td>
+                                            </tr>
+                                        </tbody>
+                                </table>
+                                :
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Verfied</th>
+                                        <th scope="col">Subscription</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Purchased On</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                        <td><img
+                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/480px-Twitter_Verified_Badge.svg.png"
+                                            style={{height:"25px",width:"25px"}}
+                                        />
+                                        </td>
+                                        <td>{decoded.payment_options}</td>
+                                        <td>{(decoded.payment_options=="monthly"?"Rs 100":"Rs 300")}</td>
+
+                                        <td>{(decoded.date_of_subcription)?
+                                                decoded.date_of_subcription.slice(0,10)
+                                            :
+                                                null
+                                            }
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                            }
+                        </TopShadowBar>
+                        </div>
             </div>
         </div>
     </SideDivForAllComponents>

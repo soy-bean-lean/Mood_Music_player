@@ -1,7 +1,19 @@
 export const MAIN_URL = "http://localhost:8000"
-export const MAIN_FRONT_URL = "http://localhost:3000"
+// export const MAIN_FRONT_URL = "http://localhost:3000"
+export const MAIN_FRONT_URL = "http://localhost:8000"
+// export const PORT = ":3000"
+export const PORT = ":8000"
+
+export const ANALYTIC_URL_FOR_PIE_CHART = MAIN_URL + "/image/uploads/_data_in_pie_/data/show"
+export const ON_PAYMENT_SUCCESS = MAIN_FRONT_URL + "/payment/subcription/success"
+export const ON_PAYMENT_FAIL =  MAIN_FRONT_URL + "/payment/subcription/failed"
+
+// export const GET_SET_SUBCRIPTION_DATA = MAIN_URL + "/payments_check/_admin_set_subcription/___data___/"
+export const GET_SET_SUBCRIPTION_DATA = MAIN_URL + "/payments_check/_admin_set_subcription/___data___readonly__/"
+export const GET_SET_SUBCRIPTION_DATA_READONLY_ = MAIN_URL + "/payments_check/_admin_set_subcription/___data___readonly__/"
 
 export const BACK_END_REFRESH_TOKEN = MAIN_URL + "/accounts/accounts_data/token/refresh/"
+export const BACK_END_REFRESH_TOKEN_AFTER_VERIFICATION = MAIN_URL + "/accounts/token/new/"
 export const BACKEND_URL_LOGOUT= MAIN_URL + "/logout/"
 
 export const BACKEND_ALL_SINGUP = MAIN_URL + "/auth/users/"

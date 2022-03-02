@@ -15,6 +15,8 @@ from rest_framework.routers import DefaultRouter
 urlpatterns = [
     # path('upload/image/',include(router.urls)),
     path('upload/image/', views.image_uplaod_detect, name='__see_data__'),
+    # path('_data_in_pie_/data/', views.analysis_in_chart, name='_songs_pie_chart_'),
+    path('_data_in_pie_/data/show', views.analysis_in_chart_show_, name='_songs_pie_chart_'),
     # path('api/image/', views._list, name='_upload_mp3_songs_'),
 ]
 

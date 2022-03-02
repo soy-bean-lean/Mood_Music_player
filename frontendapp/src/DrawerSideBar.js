@@ -11,13 +11,15 @@ import EmailVerification from './components/accounts/EmailVerification';
 import Signup from './Signup'
 import Login from './components/Login';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faHeadphones,faHome,faMusic,faUser,faUserCheck } from "@fortawesome/free-solid-svg-icons";
+import {faHeadphones,faHome,faMusic,faUser,faUserCheck,faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import Logout from './components/Logout';
 import Goto from './components/Goto';
 import ResendEmailVerification from './components/accounts/ResendEmailVerification';
 import ResetPassword from './components/accounts/ResetPassword';
 import ResetPasswordFinal from './components/accounts/ResetPasswordFinal';
-
+import Payments from './components/payments/Payments';
+import Subcription from './components/payments/Subcription';
+import VerfiyPayments from './components/payments/VerfiyPayments';
 
 const DrawerSideBar = ({AUTHORIZATION_TOKEN}) => {
 
@@ -64,6 +66,12 @@ const DrawerSideBar = ({AUTHORIZATION_TOKEN}) => {
                                 <span style={{marginLeft:"17px"}}><b>Songs</b></span>
                             </Link>
                             </li>
+                            <li style={_ui_style_}>
+                            <Link  style={_link_style_inner} to="/payment">
+                                <FontAwesomeIcon  style={_icon_style_}  icon={faMoneyBill}></FontAwesomeIcon>
+                                <span style={{marginLeft:"17px"}}><b>Payment</b></span>
+                            </Link>
+                            </li>
                         </ul>
                     </div>
                     </SideDivWhole>
@@ -83,6 +91,13 @@ const DrawerSideBar = ({AUTHORIZATION_TOKEN}) => {
                             {/* <Route path="/logout" element={<Logout />}/> */}
                             <Route path="/logout" element={<Logout AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>}/>
                             <Route path="/signup" element={<Signup AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>}/>
+
+
+                            <Route path="payment" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}>
+                                <Route index element={<Payments AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN} />} />
+                                    <Route path="subcription/:subcription" element={<Subcription AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN} />} />
+                            </Route>
+                            <Route path="/payments_data/Verify-Transaction/:subcription" element={<VerfiyPayments AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>} />
                             <Route path="/*" element={<PageNotFound />} />
                     </Routes>
                     </Router>

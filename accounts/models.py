@@ -6,20 +6,21 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 import uuid
 import re , os
 from django.core.exceptions import ValidationError
+import datetime
 
 class UserAccountManager(BaseUserManager):
 
-    def create_user(self, email, first,last,  password=None):
+    def create_user(self, email, first_name,last_name,  password=None):
         if not email:
             raise ValueError("User must have an email address")
         email = self.normalize_email(email)
-        user = self.model(email=email, first=first,last=last)
+        user = self.model(email=email, first_name=first_name,last_name=last_name)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first,last, password):
-        user = self.create_user(email,first,last, password)
+    def create_superuser(self, email, first_name,last_name, password):
+        user = self.create_user(email,first_name,last_name, password)
 
         user.is_staff = True
         user.is_superuser = True
@@ -55,15 +56,19 @@ def validate_first_name(first_name):
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=40,unique=True)
-    first = models.CharField(max_length=10,validators=[validate_first_name])
-    last = models.CharField(max_length=10,validators=[validate_last_name])
+    first_name = models.CharField(max_length=10,validators=[validate_first_name])
+    last_name = models.CharField(max_length=10,validators=[validate_last_name])
     profile_pic = models.ImageField(upload_to ='images/',null=True,default="/images/default.png",validators=[validate_image],help_text='Maximum file size allowed is 5MB')
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    payment_options = models.CharField(max_length=10,default="None")
+    order_id = models.CharField(max_length=200,default="None")
+    date_of_subcription = models.DateField(default=datetime.datetime.now(),editable=True, blank=True)
+
     username = None
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first','last']
+    REQUIRED_FIELDS = ['first_name','last_name']
 
     objects = UserAccountManager()
 

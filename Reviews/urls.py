@@ -6,6 +6,7 @@ router = DefaultRouter()
 router.register('', views.reviews_add,basename='user_reviews')
 
 urlpatterns = [
+    path('show/all_reviews', views.all_reviews, name='all_reviews'),
     path('add/reviews/',include(router.urls)),
     path('trending_songs/<str:value>/', views.analysis_reviews, name='_trending_songs_'),
     path('reviews/<str:value>/', views.reviews, name='_reviews_songs_'),

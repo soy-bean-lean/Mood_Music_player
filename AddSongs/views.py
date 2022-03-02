@@ -3,7 +3,6 @@ from AddSongs.serializers import Songs_Name_Serializer
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAdminUser
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated

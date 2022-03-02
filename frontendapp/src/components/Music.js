@@ -1,7 +1,11 @@
 import React , {useRef,useState,useEffect,useReducer} from 'react';
+import {useLocation} from "react-router-dom";
+
 import axios from 'axios'
-import {BACKENDURL_FOR_SONGS, MAIN_URL } from '../config/urls'
+import {BACKENDURL_FOR_SONGS,BACK_END_REFRESH_TOKEN, MAIN_URL,BACK_END_REFRESH_TOKEN_AFTER_VERIFICATION } from '../config/urls'
 import {IMAGE_FILE } from '../config/image'
+import {ANGRY_IMAGE } from '../config/angry'
+import {SURPRISE_IMAGE } from '../config/surprise'
 import { SideDivForAllComponents } from '../style/SideDivForAllComponents';
 import TopBar from "./TopBar";
 import './music.css'
@@ -22,11 +26,13 @@ import ListOfMusic from  './ListOfMusic'
 import { useDispatch } from "react-redux"
 import { _save_and_play_song_from_list_} from '../features/Pass_data'
 import { useNavigate } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
 
 const Music = ({AUTHORIZATION_TOKEN}) => {
     const dispatch = useDispatch()
     let navigate = useNavigate();
+
 
     const webRef = useRef(null);
     const [_capturepicture, set_capturepicture] = useState(false)
@@ -36,6 +42,25 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
     const [loading,setloading] = useState(false)
     const [facenotfound,setfacenotfound] = useState(false)
     const [_loading_songs,set_loading_songs] = useState(true)
+    const [show, setShow] = useState(false);
+    const search = useLocation().search;
+    const subcription = new URLSearchParams(search).get('subcription');
+    console.log(subcription)
+
+    useEffect(() => {
+        if(subcription){
+            setShow(true)
+        }
+        axios.get(BACK_END_REFRESH_TOKEN_AFTER_VERIFICATION,{ headers: {'Authorization': `Bearer ${AUTHORIZATION_TOKEN}`},withCredentials: true})
+        .then((respose) => {})
+        .catch((error) => {})
+        axios.post(BACK_END_REFRESH_TOKEN,{payload:null},{ withCredentials: true })
+        .then((respose) => {})
+        .catch((error) => {})
+    }, [])
+    const _div_input_ = {
+        display:"inline-block",
+    }
     const showImage = () =>{
         // console.log(webRef.current.getScreenshot());
         setimage_data(webRef.current.getScreenshot());
@@ -77,7 +102,11 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
         }
       }
       const [state, dispatch_reducer] = useReducer(reducer, initialState);
-
+      function rand(length, current) {
+        current = current ? current : '';
+        return length ? rand(--length, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz".charAt(Math.floor(Math.random() * 60)) + current) : current;
+      }
+      let name_tmp = rand(5)
         function send_data(){
             setloading(true)
             set_loading_songs(false)
@@ -85,8 +114,10 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
             const image_base64_test = IMAGE_FILE
             let BACKENDURL = BACKENDURL_FOR_SONGS
             axios.post(BACKENDURL,{
-                name:"roshan",
+                name:name_tmp,
                 image:image_data
+                // image: ANGRY_IMAGE,
+                // image: SURPRISE_IMAGE,
                 // image: image_base64_test
             }).then((response) => {
                 console.log(response.data)
@@ -107,12 +138,40 @@ const Music = ({AUTHORIZATION_TOKEN}) => {
                   set_loading_songs(true)
                 })
             }
+
+
+
+
 return (
     <>
         <SideDivForAllComponents>
             <div className="_side_component_">
                 <TopBar TopBarName="Music" URL_TO_GO="Dashboard" URL_TO_GO="/logout" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
+
                 {/* flexr div */}
+                {(show)
+                ?
+                    <>
+                    <center>
+                        <Alert variant="success" style={{ width: "42rem" }}>
+                            <Alert.Heading>
+                                    Welcome to the Subcription CLUB
+                                    <h1 style={{color:"red"}}>Refresh Page Once</h1>
+                            </Alert.Heading>
+                            <Button
+                            onClick={()=>{
+                                setShow(false)
+
+                            }}
+                            >
+                                close
+                            </Button>
+                        </Alert>
+                    </center>
+                    </>
+                :
+                    null
+                }
                     <div className='div_photo_and_trending'>
                     <div className="_mobile_view">
                         {(_capturepicture)?
@@ -176,6 +235,7 @@ return (
                                         :
                                         <>
                                         <center>
+                                            <br></br><br></br>
                                             <CircularProgress />
                                         </center>
                                         </>
@@ -235,6 +295,7 @@ return (
                                     </button>
                                 </div>
                                 </TopShadowBar>
+
                                 <br></br>
                                    {(loading)?
                                         <Box sx={{ width: '100%' }}>
@@ -266,7 +327,9 @@ return (
                                  </TopShadowBar>
                             </>}
                     </div>
+
                     {/* capture video state end */}
+
                     {(emotion)?
                         (loading)?
                             <div className="_mobile_view" >
@@ -297,7 +360,8 @@ return (
                             </div>
 
                     }
-                </div>
+                    </div>
+
             </div>
         </SideDivForAllComponents>
     </>

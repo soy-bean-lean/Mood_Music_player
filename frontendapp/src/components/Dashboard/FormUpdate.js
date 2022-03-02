@@ -13,6 +13,7 @@ const FormUpdate = ({name_of_type,id__type,AUTHORIZATION_TOKEN,datatypeprops,val
     const [valuedata,setvalue] = useState(value_props)
     const [disabled_or_enable, updatedisabled_or_enable] = useState(true);
     const [serverResponse, UserverResponse] = useState(null);
+    const [actiontoast, setactiontoast] = useState(true);
 
     const notify = () => {
 
@@ -20,7 +21,7 @@ const FormUpdate = ({name_of_type,id__type,AUTHORIZATION_TOKEN,datatypeprops,val
     }
     const error_notify = (error_from_server) => {
 
-        toast(error_from_server)
+        toast(error_from_server+"jdjdjddj")
     }
 
     const onSubmit = (data) =>{
@@ -29,15 +30,17 @@ const FormUpdate = ({name_of_type,id__type,AUTHORIZATION_TOKEN,datatypeprops,val
             'Authorization': `Bearer ${AUTHORIZATION_TOKEN}`
             }}).then((resr) => {
                 updatedisabled_or_enable(true)
+                setactiontoast(true)
                 notify()
         }).catch(err => {
+            setactiontoast(false)
             console.log(err.response.data)
             if(err.response.data["email"]){
             error_notify(err.response.data["email"][0])}
-            if(err.response.data["first"]){
-            error_notify(err.response.data["first"][0])}
-            if(err.response.data["last"]){
-            error_notify(err.response.data["last"][0])}
+            if(err.response.data["first_name"]){
+            error_notify(err.response.data["first_name"][0])}
+            if(err.response.data["last_name"]){
+            error_notify(err.response.data["last_name"][0])}
             updatedisabled_or_enable(true)
         })
     };
@@ -65,21 +68,21 @@ const FormUpdate = ({name_of_type,id__type,AUTHORIZATION_TOKEN,datatypeprops,val
                     onChange={(e) => call_after_change(e.target.value)}
                 />
                 <br></br><br></br><br></br>
-                <Button type="submit" style={{backgroundColor:"#dafb81fc",fontWeight:"bold"}} variant="outlined"  className="btn" disabled={disabled_or_enable}>Update {datatypeprops}</Button>
+                <Button type="submit" style={{backgroundColor:"#dafb81fc",fontWeight:"bold"}} variant="outlined"  className="btn" disabled={disabled_or_enable}>Update {label_name}</Button>
     </form>
 
-            <ToastContainer
-                position="bottom-left"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                toastStyle={{ backgroundColor: "#d1ffcf" }}
-            />
+                <ToastContainer
+                    // toastStyle={{ backgroundColor:(actiontoast)?'red':'crimson'}}
+                    position="bottom-left"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
     </div>
     </>
   )

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+# from telnetlib import AUTHENTICATION
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,13 +42,14 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'djoser',
+    "accounts",
     'rest_framework',
     'rest_framework_simplejwt',
     'AddSongs',
     'AddImageForModeCheck',
     'Reviews',
-    "accounts",
-    "userupdate",
+    'userupdate',
+    'payment'
 ]
 
 MIDDLEWARE = [
@@ -64,8 +66,8 @@ MIDDLEWARE = [
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = '---your-email---'
-EMAIL_HOST_PASSWORD = '---your-app-password-'
+EMAIL_HOST_USER = 'codieburh682@gmail.com'
+EMAIL_HOST_PASSWORD = 'xojqeeqqbnlzgswk'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Music Mood Player'
 
@@ -76,13 +78,14 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
-    # 'DEFAULT_RENDERER_CLASSES': (
-    #     'rest_framework.renderers.JSONRenderer',
-    # ),
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    # 'DEFAULT_RENDERER_CLASSES': [
+    #     'rest_framework.renderers.JSONRenderer',
+    # ],
 }
+
 
 ROOT_URLCONF = 'core.urls'
 
@@ -99,6 +102,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect' #added this for social-auth
             ],
         },
     },
@@ -147,6 +152,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -200,16 +207,19 @@ STATICFILES_DIRS = [
 
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ),
+# }
 
 
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
+   'AUTH_TOKEN_CLASSED':{  #added this for social-auth
+       'rest_framework_simplejwt.tokens.AccessToken',
+   }
 }
 
 
@@ -232,6 +242,9 @@ DJOSER = {
         'user_delete': 'djoser.serializer.UserDeleteSerializer',
     },
 }
+
+
+
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
 
@@ -239,10 +252,10 @@ AUTH_USER_MODEL = 'accounts.UserAccount'
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
-    # 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=6),
-    # 'REFRESH_TOKEN_LIFETIME': timedelta(minutes=6),
+    # 'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
+    # 'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=6),
+    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=6),
     # 'ACCESS_TOKEN_LIFETIME': timedelta(seconds=10),
     # 'REFRESH_TOKEN_LIFETIME': timedelta(seconds=10),
     'ROTATE_REFRESH_TOKENS': True,

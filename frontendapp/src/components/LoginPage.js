@@ -33,6 +33,7 @@ const LoginPage = () => {
     <>
 
       <>
+      <div className="shadow-lg p-3 mb-5 mt-5 bg-white rounded" style={_whole_div_}>
       <Formik
           initialValues={{
               email:"",
@@ -68,7 +69,6 @@ const LoginPage = () => {
           }}
           >
               {({errors,status,touched}) => (
-                <div className="shadow-lg p-3 mb-5 mt-5 bg-white rounded" style={_whole_div_}>
                   <Form autoComplete="off" noValidate>
                     <center><h4 style={{marginTop:"15px"}}>Login to your ACC</h4></center>
 
@@ -114,13 +114,15 @@ const LoginPage = () => {
                       :
                       <center>
                       <Button className='mt-4' type="submit" variant="contained">Login</Button>
+
                       </center>
                       }
                 </Form>
-                </div>
               )}
 
           </Formik>
+
+          </div>
       </>
   </>
   )

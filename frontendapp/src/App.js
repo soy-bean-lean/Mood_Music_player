@@ -16,7 +16,6 @@ function App() {
 
   const [loading, setloading] = useState(false);
   const [admin, setadmin] = useState(false);
-
   let _token_from_redux_store_ = useSelector((state) => state.CountJwtRefreshAccessToken.JwtAccessToken)
   const dispatch = useDispatch()
 
@@ -59,7 +58,6 @@ function App() {
 useEffect(() => {
   if(_token_from_redux_store_!=null){
     var decoded = jwt_decode(_token_from_redux_store_);
-    // console.log(decoded)
     if(decoded.is_superuser){
     setadmin(true)
   }
