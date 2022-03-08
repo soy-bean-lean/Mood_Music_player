@@ -76,7 +76,9 @@ def analysis_reviews(request,value):
 
         _data_ = UserReviews.objects.filter(category=value).values()
         _list_data_ = list(_data_)
-        print(_list_data_)
+        # print("============================== Data 1==============================")
+        # print(_list_data_)
+        # print("============================== Data ==============================")
         # [{'id': 1, 'song_data_id': 1, 'first_name': 'roshan', 'user_id': '2',
         #   'reviews': 'Good', 'category': 'happy'},
 
@@ -87,30 +89,34 @@ def analysis_reviews(request,value):
         for _data_ragnger_ in range(len(_list_data_)):
             #     convert list to dic coz python dic conversion sucks
             # converted into id of reviews as key and song  reviews
+            # {'1',"this is reviews"}
             _data_to_analyze_[_list_data_[_data_ragnger_]["id"]]=_list_data_[_data_ragnger_]["reviews"]
         _check_with_id_ = {}
-        print(_data_to_analyze_)
+        # print("============================== Data 2==============================")
+        # print(_data_to_analyze_)
+        # print("============================== Data ==============================")
 
 
         for key in _data_to_analyze_:
             result = TextBlob(_data_to_analyze_[key]).sentiment.polarity
-            print(key)
-            print(result)
+            # print("Data Key "+str(key))
+            # print("Result "+ str(result))
 
-            # if polarity of reviews less than 0 then not emotion matched
-            if result<0:
-                response__data__ = [{
-                    "artist_name": "....",
-                    "category": value,
-                    "song_file": "Not yet Reviewd",
-                    "song_name": "..."
-                }]
-                return Response(response__data__, status=status.HTTP_200_OK)
 
             _check_with_id_[key] = result
             _emotions_matched_ = max(_check_with_id_, key=_check_with_id_.get)
-        # print(_emotions_matched_)
+        print(result)
+        print("This is the highest emotion "+ value+" : " + str(_emotions_matched_))
 
+        # if polarity of reviews less than 0 then not emotion matched
+        if result<=0:
+            response__data__ = [{
+                "artist_name": "....",
+                "category": value,
+                "song_file": "No one got it yet",
+                "song_name": "..."
+            }]
+            return Response(response__data__, status=status.HTTP_200_OK)
 
         # get comment details from user reviews as single data
         _user_reviews_data_single_ = list(UserReviews.objects.filter(id=_emotions_matched_).values())

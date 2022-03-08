@@ -43,7 +43,6 @@ const Header = ({ADMIN_PANEL}) => {
                             <span className="slow">Mood</span>
                             <span className="slow">Player</span>
                     </center>
-                    <h5>Price Mila hai ramrari 100 300 bhayenw</h5>
                 </>
                 }
             </div>

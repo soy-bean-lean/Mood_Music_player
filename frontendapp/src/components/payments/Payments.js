@@ -10,7 +10,9 @@ import jwt_decode from "jwt-decode";
 const Payments = ( {AUTHORIZATION_TOKEN}) => {
     let navigate = useNavigate();
     const [payment, setpayment] = useState("None");
-
+    useEffect(() => {
+      document.title = "Payment | Music Mood Player";
+    }, [])
 
     useEffect(() => {
         var decoded = jwt_decode(AUTHORIZATION_TOKEN);
@@ -77,7 +79,7 @@ const Payments = ( {AUTHORIZATION_TOKEN}) => {
                     </div>
                     <div style={{height:"40px",fontSize:"15px",padding:"5px",marginTop:"2px",color:"black",backgroundColor:"#82d5f4",fontWeight:"bold"}}>
                       <center>
-                      <sup>R.s</sup><span style={{fontSize:"20px",fontWeight:"bold"}}>300</span>/<span>Yearly</span>
+                      <sup>R.s</sup><span style={{fontSize:"20px",fontWeight:"bold"}}>10000</span>/<span>Yearly</span>
                       </center>
                       <div>
                     </div>

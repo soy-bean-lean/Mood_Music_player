@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useForm } from "react-hook-form";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {  BACKENDURL_SERVER_SONGS_FOR_ADMIN } from '../../../config/urls';
 
@@ -13,14 +13,14 @@ const UpdateEdit = ({data_send_from_url,name_of_type,AUTHORIZATION_TOKEN,datatyp
     const [valuedata,setvalue] = useState(value_props)
     // const [model_to_send,setmodel_to_send] = useState(name_of_type)
     const [disabled_or_enable, updatedisabled_or_enable] = useState(true);
-    const notify = () => {
+    // const notify = () => {
 
-        toast(label_name+ " updated")
-    }
-    const error_notify = (error_from_server) => {
+    //     toast(label_name+ " updated")
+    // }
+    // const error_notify = (error_from_server) => {
 
-        toast(error_from_server)
-    }
+    //     toast(error_from_server)
+    // }
 
     const onSubmit = (data) =>{
         axios.patch(BACKENDURL_SERVER_SONGS_FOR_ADMIN+data_send_from_url+"/",data,{
@@ -28,11 +28,14 @@ const UpdateEdit = ({data_send_from_url,name_of_type,AUTHORIZATION_TOKEN,datatyp
             'Authorization': `Bearer ${AUTHORIZATION_TOKEN}`
             }}).then((resr) => {
                 updatedisabled_or_enable(true)
-                notify()
+                // notify()
+                toast(label_name+ " updated")
         }).catch(err => {
             // console.log(err.response.data)
             if(err.response.data[name_of_type]){
-            error_notify(err.response.data[name_of_type][0])}
+                toast.error(err.response.data[name_of_type][0])
+            // error_notify(err.response.data[name_of_type][0])
+        }
 
             updatedisabled_or_enable(true)
         })
@@ -63,7 +66,7 @@ const UpdateEdit = ({data_send_from_url,name_of_type,AUTHORIZATION_TOKEN,datatyp
                 <Button type="submit" style={{backgroundColor:"#dafb81fc",fontWeight:"bold"}} variant="outlined"  className="btn" disabled={disabled_or_enable}>Update {label_name}</Button>
     </form>
 
-    <ToastContainer
+    {/* <ToastContainer
                 position="bottom-left"
                 autoClose={5000}
                 hideProgressBar={false}
@@ -74,7 +77,7 @@ const UpdateEdit = ({data_send_from_url,name_of_type,AUTHORIZATION_TOKEN,datatyp
                 draggable
                 pauseOnHover
                 toastStyle={{ backgroundColor: "#d1ffcf" }}
-            />
+            /> */}
     </div>
     </>
   )

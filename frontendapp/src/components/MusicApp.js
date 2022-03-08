@@ -19,6 +19,9 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { useNavigate } from "react-router-dom";
 
 const MusicApp = ({AUTHORIZATION_TOKEN}) => {
+    useEffect(() => {
+        document.title = "Music App | Music Mood Player";
+      }, [])
     // console.log(_songs_from_server_)
     let navigate = useNavigate();
 

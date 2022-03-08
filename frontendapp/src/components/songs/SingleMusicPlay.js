@@ -116,9 +116,7 @@ const SingleMusicPlay = ({AUTHORIZATION_TOKEN}) => {
                             <AudioPlayer
                                 autoPlay
                                 customAdditionalControls={[]}
-                                showJumpControls={false}
                                 src={_songs_to_play_.song_file}
-                                customAdditionalControls={[]}
                                 showJumpControls={true}
                                 onPause={onPause_call}
                                 onPlay={onPlay_call}

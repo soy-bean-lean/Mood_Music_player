@@ -9,6 +9,9 @@ import UpdateEdit from './UpdateEdit';
 import Select_Update from "./Select_Update";
 import UpdateCoverPhoto from './UpdateCoverPhoto'
 import UpdateSong from './UpdateSong'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faCircleArrowLeft} from "@fortawesome/free-solid-svg-icons";
+
 
 const EditUpdate = ({AUTHORIZATION_TOKEN}) => {
     let navigate = useNavigate();
@@ -43,6 +46,14 @@ const EditUpdate = ({AUTHORIZATION_TOKEN}) => {
            <div className="_side_component_">
                <TopBar TopBarName={"Edit/Update "+name} URL_TO_GO="/logout" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
                <div className="_div_button_">
+                 <button
+                 className='btn btn-danger'
+                  onClick={()=>{
+                    navigate('/ListSongs')
+                  }}
+                 >
+                   <FontAwesomeIcon size='1x' icon={faCircleArrowLeft}></FontAwesomeIcon>
+                 </button>
                  {(loading)
                  ?
                   <div style={{padding:"20px"}}>

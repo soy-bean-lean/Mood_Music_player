@@ -119,7 +119,7 @@ const _search_parameter= (e) => {
 
             {(_empty_data_)?
                 <center>
-                    <p style={{color:"red",fontWeight:"bold"}}>Not found</p>
+                    <p style={{color:"red",fontWeight:"bold"}}>There was no song ( sorry for the inconvenience)</p>
                     <img
                         src="https://media1.giphy.com/media/J4Kht6IWPBGCyNE1Xg/giphy.gif?cid=ecf05e47imdysn9s80ii464rkwch19tcr70u5xb5nm9u4xy3&rid=giphy.gif&ct=g"
                     />
@@ -150,8 +150,9 @@ const _search_parameter= (e) => {
                                     src={item.cover_photo}
                                     style={{borderRadius:"50px",height:"50px",width:"50px",marginLeft:"5px"}}
                                 />
-                                <span style={{marginLeft:"4px",fontWeight:"bold",fontFamily:"monospace"}}>({item.song_name})</span>
-                                <span style={{marginLeft:"10px",fontWeight:"bold",fontFamily:"monospace"}}>({item.artist_name})</span>
+                                <span style={{marginLeft:"4px",fontWeight:"bold",fontFamily:"monospace"}}>(Song : {item.song_name})</span>
+                                <span style={{marginLeft:"10px",fontWeight:"bold",fontFamily:"monospace"}}>(Singer : {item.artist_name})</span>
+                                <span style={{marginLeft:"10px",fontWeight:"bold",fontFamily:"monospace"}}>(category : {item.category})</span>
                             </div>
                         )
                     }))

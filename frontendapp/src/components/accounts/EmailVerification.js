@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , {useState,useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import {Alert, Form  } from 'react-bootstrap';
 import Button from '@mui/material/Button';
@@ -9,7 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const EmailVerification = () => {
   let navigate = useNavigate();
-
+  useEffect(() => {
+    document.title = "Email-Verification | Music Mood Player";
+  }, [])
     const { id,token } = useParams();
     const [_load_spinner_, set_load_spinner_] = useState(false)
     const [message, setmessage] = useState(null)
@@ -41,7 +43,7 @@ const EmailVerification = () => {
             setmessageyes(null)
             setmessage(err.response.data["token"][0])
             }else{
-              console.log("asdadfasdf")
+              // console.log("asdadfasdf")
               setmessageyes(null)
               setmessage("check all data")
             }

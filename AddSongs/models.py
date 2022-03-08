@@ -40,7 +40,7 @@ def AUDIO_VALIDATE(AUDIO_FILE):
 class SongsName(models.Model):
     # International Standard Recording Code (ISRC)
     # uuid = models.UUIDField(primary_key=True,default=uuid.uuid4, db_index=True, editable=False, unique=True)
-    song_name = models.CharField(max_length=20,unique=True,editable=True)
+    song_name = models.CharField(max_length=30,unique=True,editable=True)
     song_irsc = models.CharField(max_length=30,unique=True,validators=[IRSC_VALIDATE])
     artist_name = models.CharField(max_length=20,null=False)
     song_file = models.FileField(upload_to ='file/',null=False,help_text='Maximum file size allowed is 20MB',validators=[AUDIO_VALIDATE])

@@ -47,15 +47,17 @@ from base64 import b64decode
 @api_view(['POST'])
 # @api_view(['GET'])
 def image_uplaod_detect(request):
-   # try:
+   try:
       json_data = request.body
       stream = io.BytesIO(json_data)
       user_data_dic = JSONParser().parse(stream)
       # print(user_data_dic)
       imagestr = user_data_dic["image"]
       im = Image.open(BytesIO(b64decode(imagestr.split(',')[1])))
-      im.save("C://Users//kcros//PycharmProjects//facial_recog_play_song//backup//core//images_of_user//"+user_data_dic["name"]+".jpeg")
-      img1 = cv2.imread("C://Users//kcros//PycharmProjects//facial_recog_play_song//backup//core//images_of_user//"+user_data_dic["name"]+".jpeg")
+      # im.save("C://Users//kcros//PycharmProjects//facial_recog_play_song//backup//core//images_of_user//"+user_data_dic["name"]+".jpeg")
+      # img1 = cv2.imread("C://Users//kcros//PycharmProjects//facial_recog_play_song//backup//core//images_of_user//"+user_data_dic["name"]+".jpeg")
+      im.save("images_of_user//"+user_data_dic["name"]+".jpeg")
+      img1 = cv2.imread("images_of_user//"+user_data_dic["name"]+".jpeg")
       result = DeepFace.analyze(img1, actions= ['emotion'])
       face_emotions = result["dominant_emotion"]
       # print(face_emotions)
@@ -132,9 +134,9 @@ def image_uplaod_detect(request):
             _save_analytic_.save()
       return Response(_song_list_response_,status=status.HTTP_200_OK)
       # return Response({"message": "You are " + face_emotions},status=status.HTTP_200_OK)
-   # except:
-      # print("Error was hit")
-      # return Response({"message": "Do You even Have a Face"}, status=status.HTTP_400_BAD_REQUEST)
+   except:
+      print("Error was hit")
+      return Response({"message": "Do You even Have a Face"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 

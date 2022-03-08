@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , {useState,useEffect} from 'react'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Alert } from 'react-bootstrap';
@@ -11,7 +11,9 @@ import { useNavigate } from "react-router-dom";
 
 const Signuppage = () => {
   let navigate = useNavigate();
-
+  useEffect(() => {
+    document.title = "SignUp | Music Mood Player";
+  }, [])
   // console.log(BACKEND_ALL_SINGUP)
   const [_load_spinner_, set_load_spinner_] = useState(false)
   const [verify_email, set_verify_email] = useState(false)

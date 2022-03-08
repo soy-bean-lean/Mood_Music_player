@@ -5,9 +5,9 @@ class AddImageForModeCheckUser(models.Model):
     AddImageForModeCheckUserField = models.ImageField(upload_to ='image/list/',null=False,help_text='Maximum file size allowed is 5MB')
     # songs_name = model.f
     # def __str__(self):
-    #     return self.Company_Name
+    #     return self.Image_Name
     # class Meta:
-    #     ordering = ['songs_name']
+    #     ordering = ['Image_name']
 
 
 

@@ -44,14 +44,14 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
     if(_token_from_redux_store_!=null){
         var decoded = jwt_decode(_token_from_redux_store_);
     }
-    const notify = () => {
+    // const notify = () => {
 
-        toast("Deleted")
-    }
+    //     toast("Deleted")
+    // }
 
-    const notifyedited = (response_data) => {
-        toast(response_data)
-    }
+    // const notifyedited = (response_data) => {
+    //     toast(response_data)
+    // }
     const _data_from_server_ = async (url) => {
 
         await axios.get(BACKEND_URL_REVIEWS_SHOW+_SONG_ID_+"/",{headers:{
@@ -74,7 +74,7 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
             console.log(err)
         }).finally(()=>{
             _data_from_server_(BACKEND_URL_REVIEWS_SHOW)
-            notify()
+            toast.error("Reviews Deleted")
         })
       }
 
@@ -115,10 +115,10 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
             'Authorization':`Bearer ${AUTHORIZATION_TOKEN}`
         }}).then((resp)=>{
             // console.log(resp.data)
-            notifyedited("Reviews Edited")
+            toast("Reviews Edited")
         }).catch((err)=>{
             console.log(err.response.data["message"])
-            notifyedited(err.response.data["message"])
+            toast.error(err.response.data["message"])
         }).finally(()=>{
             _data_from_server_(BACKEND_URL_REVIEWS_SHOW)
         })
@@ -154,7 +154,8 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
                 })
                 .catch((err) => {
                     // console.log(err)
-                    notifyedited("There was no meaning in Reviews")
+                    toast.error("There was no meaning in Reviews")
+
                 }).finally(()=>{
                     _data_from_server_(BACKEND_URL_REVIEWS_SHOW)
                     set_posting_(false)
@@ -283,7 +284,7 @@ const ReviewsByUser = ({_SONG_ID_,_SONG_NAME_,AUTHORIZATION_TOKEN}) => {
         }
         <ToastContainer
             position="bottom-left"
-            autoClose={5000}
+            autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick

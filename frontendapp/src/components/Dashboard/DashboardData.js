@@ -21,6 +21,9 @@ import PasswordSet from './PasswordSet';
 import jwt_decode from "jwt-decode";
 
 const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pic_}) => {
+    useEffect(() => {
+        document.title = "DashBoard | Music Mood Player";
+      }, [])
     const fileRef = useRef(null);
     const SUPPORTED = ["image/jpg", "image/jpeg", "image/png"];
     const _profile_data_ = useSelector((state) => state._PROFILE_DATA_.ProfileData)
@@ -285,7 +288,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                         />
                                         </td>
                                         <td>{decoded.payment_options}</td>
-                                        <td>{(decoded.payment_options=="monthly"?"Rs 100":"Rs 300")}</td>
+                                        <td>{(decoded.payment_options=="monthly"?"Rs 100":"Rs 10000")}</td>
 
                                         <td>{(decoded.date_of_subcription)?
                                                 decoded.date_of_subcription.slice(0,10)

@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , {useState,useEffect} from 'react'
 import { BACKEND_RESET_PASSWORD } from '../../config/urls';
 import {Alert, Form  } from 'react-bootstrap';
 import Button from '@mui/material/Button';
@@ -7,10 +7,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from 'axios'
 import AlertMUI from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ResetPassword = () => {
+  useEffect(() => {
+    document.title = "Password Reset | Music Mood Player";
+  }, [])
     const [error, seterror] = useState(null)
     const [success, setsuccess] = useState(false)
+    const [spinnner, setspinnner] = useState(false)
     const _whole_div_ = {
         width:"50%",
         margin:"auto",
@@ -24,16 +29,19 @@ const ResetPassword = () => {
       });
       const onSubmitHandler = (data) => {
         // console.log(data.email)
+        setspinnner(true)
         axios.post(BACKEND_RESET_PASSWORD,{
             email:data.email
           })
           .then((response) => {
             seterror(null)
             setsuccess(true)
+            setspinnner(false)
             })
             .catch(err =>{
                 setsuccess(false)
                 seterror("Check your mail again")
+                setspinnner(false)
             })
 
         // reset();
@@ -71,8 +79,17 @@ const ResetPassword = () => {
 
 
               </Form.Group>
-
-                  <Button className='mt-4' type="submit" variant="contained">Reset Password Verifcation</Button>
+                  {(spinnner)
+                  ?
+                  <>
+                    <p style={{color:"red",fontWeight:"bold"}}>Sending verification</p>
+                    <CircularProgress/>
+                  </>
+                  :
+                  <>
+                    <Button className='mt-4' type="submit" variant="contained">Reset Password Verifcation</Button>
+                  </>
+                  }
             </center>
         </Form>
       </div>

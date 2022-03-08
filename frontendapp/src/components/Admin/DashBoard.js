@@ -14,6 +14,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faHeadphonesAlt,faChevronRight,faChevronLeft, faL } from "@fortawesome/free-solid-svg-icons";
 
 const DashBoard = ({AUTHORIZATION_TOKEN}) => {
+    useEffect(() => {
+        document.title = "Admin DashBoard | Music Mood Player";
+      }, [])
     let navigate = useNavigate();
     const [data, setdata] = useState(null)
     const [subcriptiondata, setsubcriptiondata] = useState(null)

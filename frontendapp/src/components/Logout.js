@@ -4,6 +4,7 @@ import { BACKEND_URL_LOGOUT } from '../config/urls';
 import axios from 'axios';
 import { useDispatch } from "react-redux"
 import { _save_access_token_,_save_refresh_token_ , __delete_refresh_token_} from '../features/JwtRefreshAccessToken'
+import { unset_admin_} from '../features/IsAdmin'
 
 const Logout = () => {
     let navigate = useNavigate();
@@ -16,10 +17,12 @@ const Logout = () => {
             payload:null
         },{ withCredentials: true })
       .then((res) => {
+          dispatch(unset_admin_(false));
           dispatch(__delete_refresh_token_(null))
           navigate("/login")
       })
       .catch((error) => {
+        dispatch(unset_admin_(false));
         dispatch(__delete_refresh_token_(null))
         navigate("/login")
       })

@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 const Login = ({AUTHORIZATION_TOKEN}) => {
   // console.log(AUTHORIZATION_TOKEN)
+  useEffect(() => {
+    document.title = "Login | Music Mood Player";
+  }, [])
   let navigate = useNavigate();
 
   useEffect(() => {

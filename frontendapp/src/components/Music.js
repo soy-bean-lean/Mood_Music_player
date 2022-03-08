@@ -30,6 +30,9 @@ import Alert from "react-bootstrap/Alert";
 
 
 const Music = ({AUTHORIZATION_TOKEN}) => {
+    useEffect(() => {
+        document.title = "Music | Music Mood Player";
+      }, [])
     const dispatch = useDispatch()
     let navigate = useNavigate();
 
@@ -146,7 +149,7 @@ return (
     <>
         <SideDivForAllComponents>
             <div className="_side_component_">
-                <TopBar TopBarName="Music" URL_TO_GO="Dashboard" URL_TO_GO="/logout" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
+                <TopBar TopBarName="Music" URL_TO_GO="/logout" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
 
                 {/* flexr div */}
                 {(show)
@@ -345,13 +348,6 @@ return (
                             </div>
                             :
                             <div className="_mobile_view" >
-                            <TopShadowBar>
-                                    <div className='top_bar_with_shadow_class'>
-                                        <p className="float-left" style={{fontSize:"20px",padding:"5px",fontWeight:"bold"}}>
-                                        List of Music
-                                        </p>
-                                    </div>
-                                </TopShadowBar>
                                 <ListOfMusic />
                             </div>
                         :

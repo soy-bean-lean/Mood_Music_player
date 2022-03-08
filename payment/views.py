@@ -21,13 +21,14 @@ def payment_handle(request,value):
     # print("amt: " +request.GET["amt"])
     # print("refId: " +request.GET["refId"])
     # print("id : " +str(request.user.id))
-    try:
+    # try:
 
         # if(monthly)
         data = PaymentsDetails.objects.filter(Time_for_subcriptions=request.GET["subcription"]).values()
-        # print(data)
+        # print(len(data))
         # print((data[0]["Time_for_subcriptions"]))
-        # check order id order_id
+        # return Response({"message":"Good"}, status=status.HTTP_200_OK)
+        # # check order id order_id
         check_oid = UserAccount.objects.all()
         for ccc in check_oid.iterator():
             if request.GET["oid"]==ccc.order_id:
@@ -57,15 +58,15 @@ def payment_handle(request,value):
         else:
             return Response({"message":"something went wrong!!!"}, status=status.HTTP_400_BAD_REQUEST)
         return Response(_data_send_, status=status.HTTP_200_OK)
-    except:
-            return Response({"message":"something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
+    # except:
+    #         return Response({"message":"something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(('GET',))
 def save_payment(req):
     try:
         save_data = PaymentsDetails(money_for_subscription='100', Time_for_subcriptions='monthly')
         save_data.save()
-        save_data = PaymentsDetails(money_for_subscription='300', Time_for_subcriptions='yearly')
+        save_data = PaymentsDetails(money_for_subscription='10000', Time_for_subcriptions='yearly')
         save_data.save()
         return Response(PaymentsDetails.objects.all().values(), status=status.HTTP_200_OK)
     except:
