@@ -66,8 +66,8 @@ MIDDLEWARE = [
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'codieburh682@gmail.com'
-EMAIL_HOST_PASSWORD = 'xojqeeqqbnlzgswk'
+EMAIL_HOST_USER = 'email'
+EMAIL_HOST_PASSWORD = 'passowrd'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Music Mood Player'
 
