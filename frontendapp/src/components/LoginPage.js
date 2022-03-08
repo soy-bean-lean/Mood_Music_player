@@ -20,7 +20,7 @@ const LoginPage = () => {
   const LoginUpvalidation = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email required'),
     password:Yup.string()
-        .max(12, 'Nobody have that long password')
+        .max(30, 'Nobody have that long password')
         .required('Password required'),
   });
   const _whole_div_ = {
