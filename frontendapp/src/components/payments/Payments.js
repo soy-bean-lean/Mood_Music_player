@@ -42,7 +42,7 @@ const Payments = ( {AUTHORIZATION_TOKEN}) => {
                     </div>
                     <div style={{height:"40px",fontSize:"15px",padding:"5px",marginTop:"2px",color:"black",backgroundColor:"#82d5f4",fontWeight:"bold"}}>
                       <center>
-                      <sup>R.s</sup><span style={{fontSize:"20px",fontWeight:"bold"}}>100</span>/<span>monthly</span>
+                      <sup>R.s</sup><span style={{fontSize:"20px",fontWeight:"bold"}}>50</span>/<span>monthly</span>
                       </center>
                     </div>
                     <div>
@@ -79,7 +79,7 @@ const Payments = ( {AUTHORIZATION_TOKEN}) => {
                     </div>
                     <div style={{height:"40px",fontSize:"15px",padding:"5px",marginTop:"2px",color:"black",backgroundColor:"#82d5f4",fontWeight:"bold"}}>
                       <center>
-                      <sup>R.s</sup><span style={{fontSize:"20px",fontWeight:"bold"}}>10000</span>/<span>Yearly</span>
+                      <sup>R.s</sup><span style={{fontSize:"20px",fontWeight:"bold"}}>1200</span>/<span>Yearly</span>
                       </center>
                       <div>
                     </div>

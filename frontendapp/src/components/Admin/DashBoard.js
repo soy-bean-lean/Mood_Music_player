@@ -109,7 +109,7 @@ const _search_parameter = (data_search) =>{
   return (
         <SideDivForAllComponents>
         <div className="_side_component_">
-            <TopBar TopBarName="DashBoard" URL_WITH_OUT_LOGIN="/" URL_TO_GO="/logout" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
+            <TopBar  TopBarName="DashBoard" URL_WITH_OUT_LOGIN="/" URL_TO_GO="/logout" AUTHORIZATION_TOKEN={AUTHORIZATION_TOKEN}/>
 
                 <div className='div_photo_and_trending'>
                     <div className="_mobile_view" style={{width:"65%"}}>

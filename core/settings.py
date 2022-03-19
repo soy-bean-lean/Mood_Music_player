@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-52%ob=p*zokfj-&=cr$+m4%juyc-e($57b1$&=z1iso5rh_l@y
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -71,14 +71,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'codieburh682@gmail.com'
-EMAIL_HOST_PASSWORD = 'xojqeeqqbnlzgswk'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Music Mood Player'
 
 REST_FRAMEWORK = {
-        'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.JSONParser',
-    ],
+    #     'DEFAULT_PARSER_CLASSES': [
+    #     'rest_framework.parsers.JSONParser',
+    # ],
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
@@ -257,7 +257,8 @@ DJOSER = {
     },
 }
 
-
+# docker build --tag MoodMusicPlayer .
+# docker run --publish 8000:8000 MoodMusicPlayer
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
@@ -300,7 +301,6 @@ SIMPLE_JWT = {
 
 # admin@gmail.com
 # hello@123admin
-
 
 # import mimetypes
 # mimetypes.add_type("text/css", ".css", True)

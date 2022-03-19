@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ListSongs = ({AUTHORIZATION_TOKEN}) => {
     let navigate = useNavigate();
-    const notify_deleted = (data) => toast(data+" deleted");
+    const notify_deleted = () => toast("song deleted");
 
     const [songslist, setsongslist] = useState([])
     const [next, setnext] = useState(null)
@@ -76,7 +76,7 @@ const ListSongs = ({AUTHORIZATION_TOKEN}) => {
     const delete_song= (data) => {
         // console.log(data)
         _delete_song_(BACKENDURL_SERVER_SONGS_FOR_ADMIN+data+"/")
-        notify_deleted(data)
+        notify_deleted()
     }
   return (
     <>

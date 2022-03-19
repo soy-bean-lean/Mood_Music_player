@@ -245,7 +245,7 @@ return (
                                     :
                                     (facenotfound)?
                                     <center>
-                                        <p style={{fontFamily:"cursive",color:"red",fontWeight:"bold"}}>Give another shot</p>
+                                        <p style={{fontFamily:"cursive",color:"red",fontWeight:"bold",fontSize:"20px"}}>Give another shot</p>
                                         <img style={{borderRadius:"30px",marginBottom:"10px",marginTop:"10px",width:"350px",height:"350px"}} src={MAIN_URL+"/data/thereissomethingswrong.jpg"} alt="There is something wrong" />
                                         <br></br><Button  style={{borderRadius:"30px",marginBottom:"10px"}} type="button" color="info" variant="contained" onClick={() =>
                                             dispatch_reducer({type:"TAKE_ANOTHER_SHOT"})
@@ -255,7 +255,7 @@ return (
                                     :
                                         <>
                                             <center>
-                                                <p style={{fontFamily:"cursive",color:"red",fontWeight:"bold"}}>Wait for second to open a camera</p>
+                                                <p style={{fontFamily:"cursive",color:"red",fontWeight:"bold",fontSize:"20px"}}>Wait for second to open a camera</p>
                                                 <img style={{borderRadius:"30px",marginBottom:"10px",marginTop:"10px",width:"350px",hegith:"350px"}} src="https://i.giphy.com/media/eeL8EcBBTwSMLACw6F/giphy.webp" alt="There is something wrong" />
                                                 <br></br><Button  style={{borderRadius:"30px",marginBottom:"10px"}} type="button" color="info" variant="contained" onClick={() =>
                                                     dispatch_reducer({type:"TAKE_ANOTHER_SHOT"})

@@ -47,15 +47,15 @@ const Subcription = ( {AUTHORIZATION_TOKEN}) => {
 
                     <div className="form-group">
                       <label htmlFor="exampleInputtxtamt">Total amount</label>
-                      <input value={(subcription==="monthly")?100:10000} className="form-control" id="exampleInputttAmt" aria-describedby="ttAmtHelp" name="totalAmount" type="text" disabled/>
-                      <input value={(subcription==="monthly")?100:10000} className="form-control" id="exampleInputtAmt" aria-describedby="tAmtHelp" name="tAmt" type="hidden" />
+                      <input value={(subcription==="monthly")?50:1200} className="form-control" id="exampleInputttAmt" aria-describedby="ttAmtHelp" name="totalAmount" type="text" disabled/>
+                      <input value={(subcription==="monthly")?50:1200} className="form-control" id="exampleInputtAmt" aria-describedby="tAmtHelp" name="tAmt" type="hidden" />
                     </div>
 
 
                     <div className="form-group">
                       <label htmlFor="exampleInputamt">Amount</label>
-                      <input value={(subcription==="monthly")?100:10000} className="form-control" id="exampleInpuAmt" aria-describedby="mtHelp" name="Amount" type="text" disabled/>
-                      <input value={(subcription==="monthly")?100:10000} className="form-control" id="exampleInpuAmt" aria-describedby="tAmtHelp" name="amt" type="hidden" />
+                      <input value={(subcription==="monthly")?50:1200} className="form-control" id="exampleInpuAmt" aria-describedby="mtHelp" name="Amount" type="text" disabled/>
+                      <input value={(subcription==="monthly")?50:1200} className="form-control" id="exampleInpuAmt" aria-describedby="tAmtHelp" name="amt" type="hidden" />
                     </div>
 
                     <input value="0" name="txAmt" type="hidden"/>

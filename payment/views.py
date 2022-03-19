@@ -70,6 +70,15 @@ def save_payment(req):
         save_data.save()
         return Response(PaymentsDetails.objects.all().values(), status=status.HTTP_200_OK)
     except:
+
+        obj1 = PaymentsDetails.objects.get(pk=1)
+        obj1.money_for_subscription = '50'
+        obj1.save()
+        obj2 = PaymentsDetails.objects.get(pk=2)
+        obj2.money_for_subscription = '1200'
+        obj2.save()
+        # MyModel.objects.filter(field1='Computer').update(field2='cool')
+
         return Response(PaymentsDetails.objects.all().values(), status=status.HTTP_200_OK)
 
 

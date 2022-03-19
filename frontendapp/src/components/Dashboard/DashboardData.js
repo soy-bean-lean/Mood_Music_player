@@ -31,7 +31,6 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
 
     const [show, setShow] = useState(true);
     const [loading, setloading] = useState(false);
-    const notify = () => toast("profile pic updated");
 
     // console.log(_profile_data_.length)
     const CheckFile = Yup.object().shape({
@@ -101,10 +100,12 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                     //         added: 'profile updated'
                                                     //         });
                                                     // }
-                                                    notify()
+                                                    toast("profile pic updated")
+
                                                     setloading(false)
                                                 }).catch(err => {
                                                     // console.log(err)
+                                                    toast.error("there was some problem")
                                                         actions.setStatus({
                                                             file: "there was some problem"
                                                             });
@@ -153,7 +154,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                 {/* {status && status.added ? (
                                                 <small style={{fontSize:"15px",fontWeight:"bold"}} className="form-text text-success">{status.added}</small>
                                                 ) : (null)} */}
-                                                <ToastContainer
+                                                {/* <ToastContainer
                                                     position="bottom-left"
                                                     autoClose={5000}
                                                     hideProgressBar={false}
@@ -163,7 +164,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                                     pauseOnFocusLoss
                                                     draggable
                                                     pauseOnHover
-                                                />
+                                                /> */}
                                             {(loading)?
                                                 <>
                                                     <p style={{fontWeight:"bold"}}>Uploading ...</p>
@@ -288,7 +289,7 @@ const DashboardData = ({AUTHORIZATION_TOKEN,_title_of_profile_data_,_proflile_pi
                                         />
                                         </td>
                                         <td>{decoded.payment_options}</td>
-                                        <td>{(decoded.payment_options=="monthly"?"Rs 100":"Rs 10000")}</td>
+                                        <td>{(decoded.payment_options=="monthly"?"Rs 50":"Rs 1200")}</td>
 
                                         <td>{(decoded.date_of_subcription)?
                                                 decoded.date_of_subcription.slice(0,10)

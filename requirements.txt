@@ -1,60 +1,28 @@
-# asgiref==3.4.1
-# autopep8==1.6.0
-# Django==4.0.1
-# django-cors-headers==3.10.0
-# django-filter==21.1
-# djangorestframework==3.12.4
-# djangorestframework-simplejwt==4.8.0
-# dnspython==2.1.0
-# idna==3.2
-# Markdown==3.3.4
-# Pillow==8.3.2
-# pycodestyle==2.8.0
-# PyJWT==2.1.0
-# pytz==2021.3
-# sqlparse==0.4.2
-# toml==0.10.2
-# typing-extensions==3.10.0.2
-
-# #pip install deepface
-# numpy>=1.14.0
-# pandas>=0.23.4
-# gdown>=3.10.1
-# tqdm>=4.30.0
-# Pillow>=5.2.0
-# opencv-python>=4.2.0.34
-# opencv-contrib-python>=4.3.0.36
-# tensorflow
-# keras>=2.2.0
-# Flask>=1.1.2
-# # # mtcnn>=0.1.0
-# # # lightgbm>=2.3.1
-# # # dlib>=19.20.0
-# # # retina-face>=0.0.1
-# mediapipe>=0.8.7.3
-# matplotlib==3.2.2
-# # # deepface
-
-
-
 absl-py==1.0.0
-asgiref==3.4.1
+asgiref==3.5.0
 astunparse==1.6.3
 attrs==21.4.0
 autopep8==1.6.0
 beautifulsoup4==4.10.0
 cachetools==5.0.0
 certifi==2021.10.8
-charset-normalizer==2.0.10
+cffi==1.15.0
+charset-normalizer==2.0.11
 click==8.0.3
 colorama==0.4.4
+coreapi==2.3.3
+coreschema==0.0.4
+cryptography==36.0.1
 cycler==0.11.0
 deepface==0.0.72
+defusedxml==0.7.1
 Django==4.0.1
-django-cors-headers==3.10.0
+django-cors-headers==3.11.0
 django-filter==21.1
-djangorestframework==3.12.4
+django-templated-mail==1.1.1
+djangorestframework==3.13.1
 djangorestframework-simplejwt==4.8.0
+djoser==2.1.0
 dnspython==2.1.0
 filelock==3.4.2
 Flask==2.0.2
@@ -66,37 +34,45 @@ google-auth==2.5.0
 google-auth-oauthlib==0.4.6
 google-pasta==0.2.0
 grpcio==1.43.0
+gunicorn==20.1.0
 h5py==3.6.0
-idna==3.2
+idna==3.3
 itsdangerous==2.0.1
+itypes==1.2.0
 Jinja2==3.0.3
 joblib==1.1.0
 keras==2.8.0rc1
 Keras-Preprocessing==1.1.2
-kiwisolver==1.3.2
+kiwisolver
 libclang==13.0.0
 Markdown==3.3.4
 MarkupSafe==2.0.1
 matplotlib==3.5.1
 mediapipe==0.8.9.1
 mtcnn==0.1.1
+# mysqlclient
 nltk==3.6.7
 numpy==1.22.1
 oauthlib==3.2.0
-opencv-contrib-python==4.5.5.62
-opencv-python==4.5.5.62
+# python-opencv
+# opencv-contrib-python==4.5.5.62
+# opencv-python==4.5.5.62
 opt-einsum==3.3.0
 packaging==21.3
 pandas==1.4.0
-Pillow==8.3.2
+Pillow==9.0.1
 protobuf==3.19.4
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
+pybase64==1.2.1
 pycodestyle==2.8.0
-PyJWT==2.1.0
+pycparser==2.21
+PyJWT==2.3.0
 pyparsing==3.0.7
 PySocks==1.7.1
 python-dateutil==2.8.2
+python-social-auth==0.3.6
+python3-openid==3.2.0
 pytz==2021.3
 regex==2022.1.18
 requests==2.27.1
@@ -104,6 +80,8 @@ requests-oauthlib==1.3.1
 retina-face==0.0.9
 rsa==4.8
 six==1.16.0
+# social-auth-app-django==5.0.0
+social-auth-core==4.2.0
 soupsieve==2.3.1
 sqlparse==0.4.2
 tensorboard==2.8.0
@@ -111,13 +89,15 @@ tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
 tensorflow==2.8.0
 tensorflow-io-gcs-filesystem==0.23.1
-# termcolor==1.1.0
+termcolor==1.1.0
 textblob==0.17.1
 tf-estimator-nightly==2.8.0.dev2021122109
 toml==0.10.2
 tqdm==4.62.3
 typing-extensions==3.10.0.2
 tzdata==2021.5
+uritemplate==4.1.1
 urllib3==1.26.8
 Werkzeug==2.0.2
+whitenoise==6.0.0
 wrapt==1.13.3

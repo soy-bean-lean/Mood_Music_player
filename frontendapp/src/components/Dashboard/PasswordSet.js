@@ -14,14 +14,14 @@ import { BACKEND_POST_NEW_PASSWORD } from '../../config/urls';
     const [currentpassword, setcurrentpassword] = useState("");
 
 
-    const notify = () => {
+    // const notify = () => {
 
-        toast("Password updated")
-    }
-    const error_notify = (err_data) => {
+    //     toast("Password updated")
+    // }
+    // const error_notify = (err_data) => {
 
-        toast(err_data)
-    }
+    //     toast(err_data)
+    // }
 
     const onSubmit = (data) =>{
         data = {new_password:data.new_password,current_password:data.current_password,re_new_password:data.new_password}
@@ -30,14 +30,15 @@ import { BACKEND_POST_NEW_PASSWORD } from '../../config/urls';
             'Authorization': `Bearer ${AUTHORIZATION_TOKEN}`
             }}).then((resr) => {
                 updatedisabled_or_enable(true)
-                notify()
+                // notify()
+                toast("Password updated")
         }).catch(err => {
             if(err.response.data["new_password"]){
-                error_notify(err.response.data["new_password"][0])}
-                if(err.response.data["first"]){
-                error_notify(err.response.data["first"][0])}
-                if(err.response.data["current_password"]){
-                error_notify(err.response.data["current_password"][0])}
+                toast.error(err.response.data["new_password"][0])}
+            if(err.response.data["first"]){
+                toast.error(err.response.data["first"][0])}
+            if(err.response.data["current_password"]){
+                toast.error(err.response.data["current_password"][0])}
                 updatedisabled_or_enable(true)
         })
     };

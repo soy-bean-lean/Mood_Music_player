@@ -1,4 +1,4 @@
-from unicodedata import name
+# from unicodedata import name
 from django.contrib import admin
 from django.urls import path,include , re_path
 
@@ -19,7 +19,7 @@ urlpatterns = [
     path('api/', include('Reviews.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
-    path('auth/', include('djoser.social.urls')),
+    # path('auth/', include('djoser.social.urls')),
     # path('', include('authuserdata.urls')),
     path('accounts/', include('accounts.urls')),
     path('user/data/', get_user_data, name='_user_data_'),

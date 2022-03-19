@@ -3,7 +3,7 @@ import React , {useState,useEffect} from "react";
 import axios from 'axios'
 import { useSelector, useDispatch } from "react-redux"
 import { _save_access_token_,_save_refresh_token_ , __delete_refresh_token_} from './features/JwtRefreshAccessToken'
-import { _set_admin_,unset_admin_} from './features/IsAdmin'
+import { _set_admin_,_set_admin_to_user_} from './features/IsAdmin'
 
 import jwt_decode from "jwt-decode";
 
@@ -17,9 +17,14 @@ import Admin from "./components/Admin/Admin";
 function App() {
 
   const [loading, setloading] = useState(false);
+  // const [normaal_or_admin, setnormaal_or_admin] = useState(false);
   // const [admin, setadmin] = useState(false);
   let _token_from_redux_store_ = useSelector((state) => state.CountJwtRefreshAccessToken.JwtAccessToken)
   let __check__admin__ = useSelector((state) => state.ISADMINCOUNTER._IS_ADMIN_STATE_)
+  let _check_set_user_or_admin_ = useSelector((state) => state.ISADMINCOUNTER._IS_USER_STATE_)
+  // console.log("__check__admin__  "+__check__admin__)
+  // console.log("_check_set_user_or_admin_  "+_check_set_user_or_admin_)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -74,13 +79,20 @@ useEffect(() => {
 
       {(loading)?
         (_token_from_redux_store_)?
+        (_check_set_user_or_admin_)?
             (__check__admin__)?
               <Admin AUTHORIZATION_TOKEN={_token_from_redux_store_}/>
             :
             <>
+              {/* this is also a normal user */}
               <Header />
               <DrawerSideBar AUTHORIZATION_TOKEN={_token_from_redux_store_}/>
             </>
+          :
+          <>
+            <Header />
+            <DrawerSideBar AUTHORIZATION_TOKEN={_token_from_redux_store_}/>
+          </>
         :
           <>
             <Header />

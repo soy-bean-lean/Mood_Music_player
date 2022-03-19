@@ -165,7 +165,7 @@ const handleClickNext = () => {
                                 :
                                 <center>
                                 <p
-                                    style={{color:"rgb(244 255 161)",fontWeight:"bold",fontSize:"12px"}}
+                                    style={{color:"rgb(244 255 161)",fontWeight:"bold",fontSize:"20px"}}
                                 >You can listen only for 4 minute.For more Subcription needed</p>
                                 <CountdownCircleTimer
                                 size={80}

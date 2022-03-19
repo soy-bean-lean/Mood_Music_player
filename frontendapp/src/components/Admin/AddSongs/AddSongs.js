@@ -14,6 +14,7 @@ const AddSongs = ({ AUTHORIZATION_TOKEN }) => {
     const fileRef = useRef(null);
     const [_close_alert, set_close_alert] = useState(true)
     const [loading, setloading] = useState(false)
+    const [success_show, setsuccess_show] = useState(null)
 
     const image_size_button = {
         height: "50px",
@@ -28,6 +29,8 @@ const AddSongs = ({ AUTHORIZATION_TOKEN }) => {
         {value:"sad",label:"Sad"},
         {value:"surprise",label:"Surprise"},
     ]
+    function close_alert(){
+    setsuccess_show(null)}
     return (
 <SideDivForAllComponents>
     <div className="_side_component_">
@@ -71,9 +74,11 @@ const AddSongs = ({ AUTHORIZATION_TOKEN }) => {
                     }).then((resr) => {
                         // console.log(resr);
                             setloading(false)
-                            actions.setStatus({
-                                successadded: "Songs Added"
-                                });
+                            // set_close_alert(true)
+                            // actions.setStatus({
+                            //     successadded: "Songs Added"
+                            //     });
+                            setsuccess_show("Songs Added")
                     }).catch(err => {
                     // eartist_name
                     // esong_file
@@ -132,8 +137,13 @@ const AddSongs = ({ AUTHORIZATION_TOKEN }) => {
                         </>
                     :
                     <Form autoComplete='off'>
+                        {(success_show)?
+                            <Alert variant="filled" onClose={() => {close_alert()}} severity="success" sx={{ width: '50%', margin: "auto" }}>{success_show}</Alert>
+                            :
+                            null
+                        }
                         {status && status.successadded ? (
-                            <Alert variant="filled" onClose={() => {set_close_alert(false)}} severity="success" sx={{ width: '50%', margin: "auto" }}>{status.successadded}</Alert>
+                            <Alert variant="filled" onClose={() => {set_close_alert()}} severity="success" sx={{ width: '50%', margin: "auto" }}>{status.successadded}</Alert>
                         ) : (null)}
                         <b><label className="fw-bold">Song Name </label></b>
                         <Field name="song_name" type="text" placeholder="Song Name" className="form-control" /><br></br>
