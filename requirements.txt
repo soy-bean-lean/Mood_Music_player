@@ -43,20 +43,18 @@ Jinja2==3.0.3
 joblib==1.1.0
 keras==2.8.0rc1
 Keras-Preprocessing==1.1.2
-kiwisolver
+kiwisolver==1.3.2
 libclang==13.0.0
 Markdown==3.3.4
 MarkupSafe==2.0.1
 matplotlib==3.5.1
 mediapipe==0.8.9.1
 mtcnn==0.1.1
-# mysqlclient
 nltk==3.6.7
 numpy==1.22.1
 oauthlib==3.2.0
-# python-opencv
-# opencv-contrib-python==4.5.5.62
-# opencv-python==4.5.5.62
+opencv-contrib-python==4.5.5.62
+opencv-python==4.5.5.62
 opt-einsum==3.3.0
 packaging==21.3
 pandas==1.4.0
@@ -80,7 +78,7 @@ requests-oauthlib==1.3.1
 retina-face==0.0.9
 rsa==4.8
 six==1.16.0
-# social-auth-app-django==5.0.0
+social-auth-app-django==5.0.0
 social-auth-core==4.2.0
 soupsieve==2.3.1
 sqlparse==0.4.2
