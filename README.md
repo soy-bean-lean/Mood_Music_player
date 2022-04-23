@@ -1,4 +1,4 @@
-# Mood Music player ( WebApp )
+# Mood Music player ( WebApp using Django + React )
 
 > Add AppPassword in core/setting.py
 
