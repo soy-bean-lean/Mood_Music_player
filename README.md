@@ -68,6 +68,10 @@
 
 
 
+>a songs limited 
+<img src="https://github.com/Roshankc682/Mood_Music_player/blob/main/User-panel/8_songs_generated.png" width="550" height="300">  
+
+
   >a_songs_unlimited
 <img src="https://github.com/Roshankc682/Mood_Music_player/blob/main/User-panel/8_a_songs_unlimited.png" width="550" height="300">  
 
