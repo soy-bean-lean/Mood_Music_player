@@ -7,7 +7,20 @@
  * EMAIL_HOST_PASSWORD = 'app password'
 
 
-> setup python virtual environment
+### Used React as front-End and django as Back-end
+
+> Used Redux toolkit for state management in React
+
+> DataBase as Sqlite
+
+
+
+
+
+
+
+
+### Setup python virtual environment
 
 > Install the requirements
 
