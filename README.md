@@ -1,4 +1,4 @@
-# Mood Music player ( WebApp using Django + React )
+# Mood Music player ( WebApp using Django + React ) => Using face Emotion Detection
 
 > Add AppPassword in core/setting.py
 
