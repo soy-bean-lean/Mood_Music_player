@@ -81,6 +81,15 @@
 
 
 
+> Take a Photo Interface
+<img src="https://github.com/Roshankc682/Mood_Music_player/blob/main/User-panel/111_UI.png" width="550" height="300">  
+
+
+> Sending Picture to Server
+<img src="https://github.com/Roshankc682/Mood_Music_player/blob/main/User-panel/222_UI.png" width="550" height="300">  
+
+
+
 >a songs limited 
 <img src="https://github.com/Roshankc682/Mood_Music_player/blob/main/User-panel/8_songs_generated.png" width="550" height="300">  
 
